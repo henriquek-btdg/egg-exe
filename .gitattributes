@@ -1,0 +1,4 @@
+# Linguist configuration
+src/*.js linguist-language=JavaScript
+src/*.css linguist-language=CSS
+*.html linguist-vendored
