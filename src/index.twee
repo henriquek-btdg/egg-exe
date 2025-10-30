@@ -1,0 +1,2560 @@
+:: StoryTitle
+index
+
+
+:: StoryData
+{
+  "ifid": "8D4270BC-0B80-40C0-9722-D98514E3F927",
+  "format": "Harlowe",
+  "format-version": "3.3.9",
+  "start": "Disclaimer",
+  "tag-colors": {
+    "DIA-3": "orange",
+    "DIA-2": "orange",
+    "DIA-1": "orange",
+    "DIA-4": "orange",
+    "DIA-5": "orange",
+    "OBSERVAR": "purple",
+    "INCUBAR": "green",
+    "NEUTRALIZAR": "red",
+    "DETALHES-OVO": "blue",
+    "FINAL": "yellow"
+  },
+  "zoom": 1
+}
+
+
+:: Confirmacao {"position":"950,50","size":"100,100"}
+(track: 'cliqueBotao', 'play')
+═══════════════════════════════════════
+CONFIRMAÇÃO DE DADOS — OPERADOR
+═══════════════════════════════════════
+
+Por favor, confirme suas informações
+antes de iniciar o protocolo.
+
+NOME: $nome
+IDADE: (input-box: bind $idade, "=X=", 1)
+
+COR FAVORITA: 
+(dropdown: bind $cor, "Azul", "Verde", "Vermelho", "Amarelo", "Roxo")
+
+NOME DA MÃE/PAI/RESPONSÁVEL: 
+(input-box: bind $responsavel, "=X=", 1)
+
+PRIMEIRO AMOR: 
+(input-box: bind $amor, "=X=", 1)
+
+MELHOR AMIGO(A): 
+(input-box: bind $amigo, "=X=", 1)
+
+MAIOR MEDO:
+(dropdown: bind $medo, "Solidão", "Escuridão", "Esquecimento", "Dor", "Perda")
+
+═══════════════════════════════════════
+
+Estas informações são necessárias para
+calibração do sistema de análise.
+
+[[<span class="pulse">CONFIRMAR E INICIAR</span>|Sistema-Dia1]]
+
+
+:: Dia1-Fim {"position":"1200,1225","size":"100,100"}
+(track: 'cliqueBotao', 'play')
+═══════════════════════════════════════
+TURNO 01 CONCLUÍDO
+═══════════════════════════════════════
+
+Ovos processados: 3/3
+Protocolo executado com sucesso.
+
+Sistema entrando em modo de repouso.
+
+Próximo turno: 08:00
+
+═══════════════════════════════════════
+
+[[<span class="pulse">Desconectar</span>|Transicao-Dia2]]
+
+
+:: Dia1-Ovo1 [DETALHES-OVO] {"position":"1200,225","size":"100,100"}
+(track: 'cliqueBotao', 'play')
+═══════════════════════════════════════
+CARREGANDO OVO 1/3...
+═══════════════════════════════════════
+
+OVO-7743-A
+
+ORIGEM: Setor 4
+COMPOSIÇÃO: Orgânica
+SINAIS VITAIS: Estáveis
+OBSERVAÇÕES: Emissões térmicas irregulares detectadas.
+
+<pre>
+    .---.
+   &#47;     &#92;
+   &#92;     &#47;
+    `---'
+</pre>
+
+═══════════════════════════════════════
+(if: $capacidade <= 2)[<span class="blink"> ⚠ CAPACIDADE CRÍTICA</span>]
+(if: $capacidade <= 0)[<span class="blink-irregular"><span class="rumble">  ⚠ SEM ANÁLISES DISPONÍVEIS</span></span>]
+═══════════════════════════════════════
+
+(if: $capacidade > 0)[
+  [[<span class="pulse">OBSERVAR DETALHES</span>|Dia1-Ovo1-Observar]]
+](else:)[
+  <span class="blur">(text-style:"underline")[OBSERVAR DETALHES]</span> [<strong>ANÁLISES ESGOTADAS</strong>]]
+[[<span class="pulse">INCUBAR</span>|Dia1-Ovo1-Incubar]]
+[[<span class="pulse">NEUTRALIZAR</span>|Dia1-Ovo1-Neutralizar]]
+
+
+:: Dia1-Ovo1-Incubar [INCUBAR] {"position":"1200,400","size":"100,100"}
+(set: $luz to it + 1)
+(track: 'cliqueBotao', 'play')
+
+
+PROTOCOLO SELECIONADO: INCUBAR
+
+OVO-7743-A transferido para câmara de incubação.
+Processo iniciado.
+
+[[<span class="pulse">Próximo ovo</span>|Dia1-Ovo2]]
+
+
+:: Dia1-Ovo1-Neutralizar [NEUTRALIZAR] {"position":"1350,400","size":"100,100"}
+(set: $sombra to it + 1)
+(track: 'cliqueBotao', 'play')
+
+PROTOCOLO SELECIONADO: NEUTRALIZAR
+
+OVO-7743-A descartado conforme protocolo.
+Processo concluído.
+
+[[<span class="pulse">Próximo ovo</span>|Dia1-Ovo2]]
+
+
+:: Dia1-Ovo1-Observar [OBSERVAR] {"position":"1025,400","size":"100,100"}
+(set: $capacidade to it - 1)
+(track: 'cliqueBotao', 'play')
+═══════════════════════════════════════
+ANÁLISE DETALHADA — OVO-7743-A
+═══════════════════════════════════════
+
+Aproximando sensores...
+
+Temperatura superficial: 36.8°C
+Densidade: Média
+Padrão de casca: Uniforme, levemente porosa
+Resposta a estímulos: Mínima
+
+Sem anomalias detectadas.
+
+═══════════════════════════════════════
+
+[[<span class="pulse">Voltar</span>|Dia1-Ovo1]]
+
+
+:: Dia1-Ovo2 [DETALHES-OVO] {"position":"1200,575","size":"100,100"}
+(track: 'cliqueBotao', 'play')
+═══════════════════════════════════════
+CARREGANDO OVO 2/3...
+═══════════════════════════════════════
+
+OVO-2891-C
+
+ORIGEM: Desconhecida
+COMPOSIÇÃO: Mista
+SINAIS VITAIS: Fracos
+OBSERVAÇÕES: Casca apresenta microfraturas. Conteúdo inerte.
+
+<pre>
+    ___
+   &#47; | &#92;
+  |  |  |
+   &#92;_|_&#47;
+</pre>
+
+═══════════════════════════════════════
+(if: $capacidade <= 2)[<span class="blink"> ⚠ CAPACIDADE CRÍTICA</span>]
+(if: $capacidade <= 0)[<span class="blink-irregular"><span class="rumble">  ⚠ SEM ANÁLISES DISPONÍVEIS</span></span>]
+═══════════════════════════════════════
+
+(if: $capacidade > 0)[
+  [[<span class="pulse">OBSERVAR DETALHES</span>|Dia1-Ovo2-Observar]]
+](else:)[
+  <span class="blur">(text-style:"underline")[OBSERVAR DETALHES]</span> [<strong>ANÁLISES ESGOTADAS</strong>]]
+[[<span class="pulse">INCUBAR</span>|Dia1-Ovo2-Incubar]]
+[[<span class="pulse">NEUTRALIZAR</span>|Dia1-Ovo2-Neutralizar]]
+
+
+:: Dia1-Ovo2-Incubar [INCUBAR] {"position":"1200,750","size":"100,100"}
+(set: $sombra to it + 1)
+(set: $capacidade to it - 1)
+(track: 'perdaCapacidade', 'play')
+
+PROTOCOLO SELECIONADO: INCUBAR
+
+Aviso: Ovo apresenta deterioração avançada.
+
+OVO-2891-C transferido para câmara de incubação.
+Processo iniciado.
+<br></br>
+<span class="shudder">[-1 CAPACIDADE DE ANÁLISE.]</span> Sistema sobrecarregado.
+<br></br>
+[[<span class="pulse">Próximo ovo</span>|Dia1-Ovo3]]
+
+
+:: Dia1-Ovo2-Neutralizar [NEUTRALIZAR] {"position":"1325,750","size":"100,100"}
+(set: $sombra to it - 1)
+(set: $capacidade to it + 1)
+(track: 'ganhoCapacidade', 'play')
+
+PROTOCOLO SELECIONADO: NEUTRALIZAR
+
+OVO-2891-C descartado conforme protocolo.
+
+Recomendação seguida. Processo concluído.
+<br></br>
+[+1 CAPACIDADE DE ANÁLISE]. Sistema estabilizado.
+<br></br>
+[[<span class="pulse">Próximo ovo</span>|Dia1-Ovo3]]
+
+
+:: Dia1-Ovo2-Observar [OBSERVAR] {"position":"1075,750","size":"100,100"}
+(set: $capacidade to it - 1)
+(track: 'cliqueBotao', 'play')
+═══════════════════════════════════════
+ANÁLISE DETALHADA — OVO-2891-C
+═══════════════════════════════════════
+
+Aproximando sensores...
+
+Temperatura superficial: 22.1°C
+Densidade: Baixa
+Padrão de casca: Irregular, fissuras visíveis
+Resposta a estímulos: Ausente
+
+Aviso: Estrutura comprometida.
+Recomendação: Neutralização.
+
+═══════════════════════════════════════
+
+[[<span class="pulse">Voltar</span>|Dia1-Ovo2]]
+
+
+:: Dia1-Ovo3 [DETALHES-OVO] {"position":"1200,900","size":"100,100"}
+(track: 'cliqueBotao', 'play')
+═══════════════════════════════════════
+CARREGANDO OVO 3/3...
+═══════════════════════════════════════
+
+OVO-5034-B
+
+ORIGEM: Setor 9
+COMPOSIÇÃO: Cristalina
+SINAIS VITAIS: Ativos
+OBSERVAÇÕES: Pulsação rítmica. Frequência: 72 bpm.
+
+<pre>
+   ████
+  ██  ██
+  ██  ██
+   ████
+</pre>
+
+═══════════════════════════════════════
+(if: $capacidade <= 2)[<span class="blink"> ⚠ CAPACIDADE CRÍTICA</span>]
+(if: $capacidade <= 0)[<span class="blink-irregular"><span class="rumble">  ⚠ SEM ANÁLISES DISPONÍVEIS</span></span>]
+═══════════════════════════════════════
+
+(if: $capacidade > 0)[
+  [[<span class="pulse">OBSERVAR DETALHES</span>|Dia1-Ovo3-Observar]]
+](else:)[
+  <span class="blur">(text-style:"underline")[OBSERVAR DETALHES]</span> [<strong>ANÁLISES ESGOTADAS</strong>]]
+[[<span class="pulse">INCUBAR</span>|Dia1-Ovo3-Incubar]]
+[[<span class="pulse">NEUTRALIZAR</span>|Dia1-Ovo3-Neutralizar]]
+
+
+:: Dia1-Ovo3-Incubar [INCUBAR] {"position":"1200,1050","size":"100,100"}
+(set: $luz to it + 1)
+(set: $capacidade to it + 1)
+(track: 'ganhoCapacidade', 'play')
+
+PROTOCOLO SELECIONADO: INCUBAR
+
+OVO-5034-B transferido para câmara de incubação.
+Processo iniciado.
+
+Sinais vitais positivos confirmados.
+<br></br>
+[+1 CAPACIDADE DE ANÁLISE.] Eficiência aumentada.
+<br></br>
+[[<span class="pulse">Finalizar turno</span>|Dia1-Fim]]
+
+
+:: Dia1-Ovo3-Neutralizar [NEUTRALIZAR] {"position":"1325,1050","size":"100,100"}
+(set: $sombra to it + 1)
+(set: $capacidade to it - 1)
+(track: 'perdaCapacidade', 'play')
+
+PROTOCOLO SELECIONADO: NEUTRALIZAR
+
+OVO-5034-B descartado conforme protocolo.
+Aviso: Potencial desperdiçado.
+Processo concluído.
+
+<br></br>
+<span class="shudder">[-1 CAPACIDADE DE ANÁLISE.]</span> Recurso perdido.
+<br></br>
+[[<span class="pulse">Finalizar turno</span>|Dia1-Fim]]
+
+
+:: Dia1-Ovo3-Observar [OBSERVAR] {"position":"1075,1050","size":"100,100"}
+(set: $capacidade to it - 1)
+(track: 'cliqueBotao', 'play')
+═══════════════════════════════════════
+ANÁLISE DETALHADA — OVO-5034-B
+═══════════════════════════════════════
+
+Aproximando sensores...
+
+Temperatura superficial: 37.2°C
+Densidade: Alta
+Padrão de casca: Cristalizado, translúcido
+Resposta a estímulos: Positiva
+
+Pulsação constante detectada.
+Sinais vitais dentro dos parâmetros normais.
+
+═══════════════════════════════════════
+
+[[<span class="pulse">Voltar</span>|Dia1-Ovo3]]
+
+
+:: Dia2-Fim {"position":"1200,2350","size":"100,100"}
+(track: 'cliqueBotao', 'play')
+═══════════════════════════════════════
+TURNO 02 CONCLUÍDO
+═══════════════════════════════════════
+
+Ovos processados: 3/3
+
+Sistema entrando em modo de repouso.
+
+═══════════════════════════════════════
+
+[[<span class="pulse">Desconectar</span>|Transicao-Dia3]]
+
+
+:: Dia2-Ovo1 [DETALHES-OVO] {"position":"1200,1600","size":"100,100"}
+(track: 'cliqueBotao', 'play')
+═══════════════════════════════════════
+CARREGANDO OVO 1/3...
+═══════════════════════════════════════
+
+OVO-4412-P
+
+ORIGEM: Setor 2
+COMPOSIÇÃO: Orgânica
+SINAIS VITAIS: Elevados
+OBSERVAÇÕES: Superfície quente ao toque.
+Análise sensorial detectou: açúcar, manteiga, velas.
+Temperatura interna: 37°C.
+
+<pre>
+    ___
+   &#47; * &#92;
+  |  ○  |
+   &#92;___&#47;
+</pre>
+
+═══════════════════════════════════════
+(if: $capacidade <= 2)[<span class="blink"> ⚠ CAPACIDADE CRÍTICA</span>]
+(if: $capacidade <= 0)[<span class="blink-irregular"><span class="rumble">  ⚠ SEM ANÁLISES DISPONÍVEIS</span></span>]
+═══════════════════════════════════════
+
+(if: $capacidade > 0)[
+  [[<span class="pulse">OBSERVAR DETALHES</span>|Dia2-Ovo1-Observar]]
+](else:)[
+  <span class="blur">(text-style:"underline")[OBSERVAR DETALHES]</span> [<strong>ANÁLISES ESGOTADAS</strong>]]
+[[<span class="pulse">INCUBAR</span>|Dia2-Ovo1-Incubar]]
+[[<span class="pulse">NEUTRALIZAR</span>|Dia2-Ovo1-Neutralizar]]
+
+
+:: Dia2-Ovo1-Incubar [INCUBAR] {"position":"1200,1725","size":"100,100"}
+(set: $luz to it + 1)
+(set: $capacidade to it + 2)
+(track: 'ganhoCapacidade', 'play')
+
+PROTOCOLO SELECIONADO: INCUBAR
+
+OVO-4412-P transferido para câmara de incubação.
+<br></br>
+Notificação: Memória positiva processada com sucesso.
+[+2 CAPACIDADE DE ANÁLISE.] Sistema energizado!
+
+<br></br>
+[[<span class="pulse">Próximo ovo</span>|Dia2-Ovo2]]
+
+
+:: Dia2-Ovo1-Neutralizar [NEUTRALIZAR] {"position":"1325,1725","size":"100,100"}
+(set: $vazio to it + 1)
+(set: $capacidade to it - 1)
+(track: 'perdaCapacidade', 'play')
+
+PROTOCOLO SELECIONADO: NEUTRALIZAR
+
+OVO-4412-P descartado conforme protocolo.
+Memória positiva descartada.
+Processo concluído.
+<br></br>
+<span class="shudder">[-1 CAPACIDADE DE ANÁLISE.]</span> Energia perdida.
+<br></br>
+[[<span class="pulse">Próximo ovo</span>|Dia2-Ovo2]]
+
+
+:: Dia2-Ovo1-Observar [OBSERVAR] {"position":"1075,1725","size":"100,100"}
+(set: $capacidade to it - 1)
+(track: 'cliqueBotao', 'play')
+═══════════════════════════════════════
+ANÁLISE DETALHADA — OVO-4412-P
+═══════════════════════════════════════
+
+Aproximando sensores...
+
+Temperatura superficial: 38.4°C
+Densidade: Média-alta
+Padrão de casca: Brilhante, colorida
+Resposta a estímulos: Forte
+
+Análise química confirma:
+- Açúcar refinado
+- Compostos lácteos
+- Cera de parafina (velas)
+
+Energia térmica crescente.
+Som detectado: risadas distantes.
+
+═══════════════════════════════════════
+
+[[<span class="pulse">Voltar</span>|Dia2-Ovo1]]
+
+
+:: Dia2-Ovo2 [DETALHES-OVO] {"position":"1200,1850","size":"100,100"}
+(track: 'cliqueBotao', 'play')
+═══════════════════════════════════════
+CARREGANDO OVO 2/3...
+═══════════════════════════════════════
+
+OVO-8823-N
+
+ORIGEM: Setor 7
+COMPOSIÇÃO: Densa
+SINAIS VITAIS: Ausentes
+OBSERVAÇÕES: Casca opaca. Absorve luz.
+Sensores detectaram: umidade, terra, flores murchas.
+Sem resposta a estímulos externos.
+
+<pre>
+     ___
+   &#47;     &#92;
+  |       |
+   &#92;_____&#47;
+</pre>
+
+═══════════════════════════════════════
+(if: $capacidade <= 2)[<span class="blink"> ⚠ CAPACIDADE CRÍTICA</span>]
+(if: $capacidade <= 0)[<span class="blink-irregular"><span class="rumble">  ⚠ SEM ANÁLISES DISPONÍVEIS</span></span>]
+═══════════════════════════════════════
+
+(if: $capacidade > 0)[
+  [[<span class="pulse">OBSERVAR DETALHES</span>|Dia2-Ovo2-Observar]]
+](else:)[
+  <span class="blur">(text-style:"underline")[OBSERVAR DETALHES]</span> [<strong>ANÁLISES ESGOTADAS</strong>]]
+[[<span class="pulse">INCUBAR</span>|Dia2-Ovo2-Incubar]]
+[[<span class="pulse">NEUTRALIZAR</span>|Dia2-Ovo2-Neutralizar]]
+
+
+:: Dia2-Ovo2-Incubar [INCUBAR] {"position":"1200,1975","size":"100,100"}
+(set: $sombra to it + 1)
+(set: $capacidade to it - 2)
+(track: 'perdaCapacidade', 'play')
+
+PROTOCOLO SELECIONADO: INCUBAR
+
+OVO-8823-N transferido para câmara de incubação.
+Processo iniciado.
+
+Aviso: Peso emocional elevado detectado.
+<br></br>
+<span class="rumble">[-2 CAPACIDADE DE ANÁLISE.]</span> Sobrecarga severa!
+<br></br>
+[[<span class="pulse">Próximo ovo</span>|Dia2-Ovo3]]
+
+
+:: Dia2-Ovo2-Neutralizar [NEUTRALIZAR] {"position":"1325,1975","size":"100,100"}
+(set: $sombra to it - 1)
+(set: $capacidade to it + 1)
+(track: 'ganhoCapacidade', 'play')
+
+PROTOCOLO SELECIONADO: NEUTRALIZAR
+
+OVO-8823-N descartado conforme protocolo.
+Processo de liberação bem-sucedido.
+
+<br></br>
+[+1 CAPACIDADE DE ANÁLISE.] Sistema aliviado.
+<br></br>
+
+[[<span class="pulse">Próximo ovo</span>|Dia2-Ovo3]]
+
+
+:: Dia2-Ovo2-Observar [OBSERVAR] {"position":"1075,1975","size":"100,100"}
+(set: $capacidade to it - 1)
+(track: 'cliqueBotao', 'play')
+═══════════════════════════════════════
+ANÁLISE DETALHADA — OVO-8823-N
+═══════════════════════════════════════
+
+Aproximando sensores...
+
+Temperatura superficial: 18.7°C
+Densidade: Muito alta
+Padrão de casca: Irregular, superfície áspera
+Resposta a estímulos: Nenhuma
+
+Análise química:
+- Água (chuva)
+- Solo argiloso
+- Matéria orgânica em decomposição
+- Compostos florais: lírios, crisântemos
+
+Emissões energéticas: negativas.
+
+═══════════════════════════════════════
+
+[[<span class="pulse">Voltar</span>|Dia2-Ovo2]]
+
+
+:: Dia2-Ovo3 [DETALHES-OVO] {"position":"1200,2100","size":"100,100"}
+(track: 'cliqueBotao', 'play')
+═══════════════════════════════════════
+CARREGANDO OVO 3/3...
+═══════════════════════════════════════
+
+OVO-6204-H
+
+ORIGEM: Setor 5
+COMPOSIÇÃO: Variável
+SINAIS VITAIS: Intermitentes
+OBSERVAÇÕES: Casca semi-translúcida.
+Padrões de luz internos inconsistentes.
+Temperatura flutuante.
+
+Este ovo é imprevisível.
+Dar uma chance pode ser bom... ou não.
+
+<pre>
+    .---.
+   &#47;  ?  &#92;
+   &#92;     &#47;
+    `---'
+</pre>
+
+═══════════════════════════════════════
+(if: $capacidade <= 2)[<span class="blink"> ⚠ CAPACIDADE CRÍTICA</span>]
+(if: $capacidade <= 0)[<span class="blink-irregular"><span class="rumble">  ⚠ SEM ANÁLISES DISPONÍVEIS</span></span>]
+═══════════════════════════════════════
+
+(if: $capacidade > 0)[
+  [[<span class="pulse">OBSERVAR DETALHES</span>|Dia2-Ovo3-Observar]]
+](else:)[
+  <span class="blur">(text-style:"underline")[OBSERVAR DETALHES]</span> [<strong>ANÁLISES ESGOTADAS</strong>]]
+[[<span class="pulse">DAR UMA CHANCE (Incubar)</span>|Dia2-Ovo3-Incubar]]
+[[<span class="pulse">NEUTRALIZAR</span>|Dia2-Ovo3-Neutralizar]]
+
+
+:: Dia2-Ovo3-Incubar [INCUBAR] {"position":"1200,2225","size":"100,100"}
+Você decide dar uma chance a esta memória...
+
+Processando...
+
+(set: $chance to (random: 1, 100))
+
+(if: $luz > $sombra)[
+   (if: $chance <= 70)[
+      (set: $luz to it + 1)
+      (set: $capacidade to it + 1)
+      (track: 'ganhoCapacidade', 'play')
+      
+      ═══════════════════════════════════════
+      
+      A mudança trouxe recomeço.
+      Novos amigos. Novas possibilidades.
+      Você cresceu com isso.
+      
+      [+1 ANÁLISE]
+      
+      ═══════════════════════════════════════
+   ](else:)[
+      (set: $sombra to it + 1)
+      (set: $capacidade to it - 1)
+      (track: 'perdaCapacidade', 'play')
+      
+      ═══════════════════════════════════════
+      
+      Mas a solidão pesou.
+      Você nunca se adaptou completamente.
+      Você carregou isso por anos.
+      
+      <span class="shudder">[-1 ANÁLISE]</span>
+      
+      ═══════════════════════════════════════
+   ]
+](else-if: $luz is $sombra)[
+   (if: $chance <= 50)[
+      (set: $luz to it + 1)
+      (set: $capacidade to it + 1)
+      (track: 'ganhoCapacidade', 'play')
+      
+      ═══════════════════════════════════════
+      
+      A mudança trouxe recomeço.
+      Novos amigos. Novas possibilidades.
+      Você cresceu com isso.
+      
+      [+1 ANÁLISE]
+      
+      ═══════════════════════════════════════
+   ](else:)[
+      (set: $sombra to it + 1)
+      (set: $capacidade to it - 1)
+      (track: 'perdaCapacidade', 'play')
+      
+      ═══════════════════════════════════════
+      
+      A solidão pesou.
+      
+      <span class="shudder">[-1 ANÁLISE]</span>
+      
+      ═══════════════════════════════════════
+   ]
+](else:)[
+   (if: $chance <= 30)[
+      (set: $luz to it + 1)
+      (set: $capacidade to it + 1)
+      (track: 'ganhoCapacidade', 'play')
+      
+      ═══════════════════════════════════════
+      
+      Contra as expectativas, deu certo.
+      A mudança foi difícil, mas necessária.
+      Você sobreviveu. Você se fortaleceu.
+      
+      [+1 ANÁLISE]
+      
+      ═══════════════════════════════════════
+   ](else:)[
+      (set: $sombra to it + 1)
+      (set: $capacidade to it - 1)
+      (track: 'perdaCapacidade', 'play')
+      
+      ═══════════════════════════════════════
+      
+      Como você temia.
+      Mais uma cicatriz para carregar.
+      
+      <span class="shudder">[-1 ANÁLISE]</span>
+      
+      ═══════════════════════════════════════
+   ]
+]
+
+[[<span class="pulse">Finalizar turno</span>|Dia2-Fim]]
+
+
+:: Dia2-Ovo3-Neutralizar [NEUTRALIZAR] {"position":"1325,2225","size":"100,100"}
+(set: $vazio to it + 1)
+(track: 'cliqueBotao', 'play')
+
+PROTOCOLO SELECIONADO: NEUTRALIZAR
+
+OVO-6204-H descartado conforme protocolo.
+
+Você escolheu não arriscar.
+Às vezes é melhor não revisitar.
+
+[[<span class="pulse">Finalizar turno</span>|Dia2-Fim]]
+
+
+:: Dia2-Ovo3-Observar [OBSERVAR] {"position":"1075,2225","size":"100,100"}
+(set: $capacidade to it - 1)
+(track: 'cliqueBotao', 'play')
+═══════════════════════════════════════
+ANÁLISE DETALHADA — OVO-6204-H
+═══════════════════════════════════════
+
+Aproximando sensores...
+
+Temperatura superficial: 22°C - 34°C (oscilando)
+Densidade: Indefinida
+Padrão de casca: Mudando constantemente
+Resposta a estímulos: Imprevisível
+
+Análise sensorial detectou:
+- Papelão
+- Fita adesiva
+- Poeira
+- Cheiro de lugar novo
+
+Sons internos: passos distantes, eco de vozes.
+
+Mudança de cidade.
+Recomeço.
+
+Pode trazer crescimento... ou solidão.
+Sistema não consegue prever.
+
+═══════════════════════════════════════
+
+[[<span class="pulse">Voltar</span>|Dia2-Ovo3]]
+
+
+:: Dia3-Fim {"position":"1200,3350","size":"100,100"}
+═══════════════════════════════════════
+T̴U̴R̴N̴O̴ ̴0̴3̴ ̴C̴O̴N̴C̴L̴U̴Í̴D̴O̴
+═══════════════════════════════════════
+
+Ovos processados: 3/3
+Análises restantes: (print: $capacidade)
+
+O sistema está... diferente.
+
+Algo mudou.
+
+═══════════════════════════════════════
+
+[[<span class="pulse">Desconectar</span>|Transicao-Dia4]]
+
+
+:: Dia3-Ovo1 [DETALHES-OVO] {"position":"1200,2725","size":"100,100"}
+(track: 'cliqueBotao', 'play')
+═══════════════════════════════════════
+CARREGANDO OVO 1/3...
+═══════════════════════════════════════
+
+OVO-6677-V
+
+ORIGEM: S̴e̴t̴o̴r̴ ̴<span class="shudder">[̴E̴R̴R̴O̴]̴</span>
+COMPOSIÇÃO: Variável
+SINAIS VITAIS: Intermitentes
+OBSERVAÇÕES: Casca translúcida.
+Conteúdo visual identificado: duas figuras, abraço prolongado.
+Som ambiente: aviso de embarque, portão de embarque 12.
+Temperatura: crescente.
+
+Este ovo contém $amor.
+Mas o resultado é incerto.
+
+<pre>
+    .---.
+   &#47;  ♥  &#92;
+   &#92;     &#47;
+    `---'
+</pre>
+
+═══════════════════════════════════════
+(if: $capacidade <= 2)[<span class="blink"> ⚠ CAPACIDADE CRÍTICA</span>]
+(if: $capacidade <= 0)[<span class="blink-irregular"><span class="rumble">  ⚠ SEM ANÁLISES DISPONÍVEIS</span></span>]
+═══════════════════════════════════════
+
+(if: $capacidade > 0)[
+  [[<span class="pulse">OBSERVAR DETALHES</span>|Dia3-Ovo1-Observar]]
+](else:)[
+  <span class="blur">(text-style:"underline")[OBSERVAR DETALHES]</span> [<strong>ANÁLISES ESGOTADAS</strong>]]
+[[<span class="pulse">DAR UMA CHANCE (Incubar)</span>|Dia3-Ovo1-Incubar]]
+[[<span class="pulse">NEUTRALIZAR</span>|Dia3-Ovo1-Neutralizar]]
+
+
+:: Dia3-Ovo1-Incubar [INCUBAR] {"position":"1200,2850","size":"100,100"}
+Você decide dar uma chance a esta memória...
+
+Processando...
+
+(set: $chance to (random: 1, 100))
+
+(if: $luz > $sombra)[
+   (if: $chance <= 70)[
+      (set: $luz to it + 1)
+      (set: $capacidade to it + 2)
+      (track: 'ganhoCapacidade', 'play')
+      
+      ═══════════════════════════════════════
+      
+      Vocês se reencontraram.
+      Ou pelo menos você guardou apenas o que foi bom.
+      O resto, você deixou no aeroporto.
+      
+      $amor te fez crescer.
+      
+      [+2 ANÁLISES]
+      
+      ═══════════════════════════════════════
+   ](else:)[
+      (set: $sombra to it + 1)
+      (set: $capacidade to it - 2)
+      (track: 'perdaCapacidade', 'play')
+      
+      ═══════════════════════════════════════
+      
+      A promessa ficou vazia.
+      Anos esperando algo que nunca voltou.
+      $amor se tornou só uma lembrança dolorosa.
+      
+      <span class="shudder">[-2 ANÁLISES]</span>
+      
+      ═══════════════════════════════════════
+   ]
+](else-if: $luz is $sombra)[
+   (if: $chance <= 50)[
+      (set: $luz to it + 1)
+      (set: $capacidade to it + 2)
+      (track: 'ganhoCapacidade', 'play')
+      
+      ═══════════════════════════════════════
+      
+      Vocês se reencontraram.
+      Foi breve, mas real.
+      Valeu cada segundo de espera.
+      
+      [+2 ANÁLISES]
+      
+      ═══════════════════════════════════════
+   ](else:)[
+      (set: $sombra to it + 1)
+      (set: $capacidade to it - 2)
+      (track: 'perdaCapacidade', 'play')
+      
+      ═══════════════════════════════════════
+      
+      A promessa ficou vazia.
+      Portão 12. Você esperou.
+      Ninguém voltou.
+      
+      <span class="shudder">[-2 ANÁLISES]</span>
+      
+      ═══════════════════════════════════════
+   ]
+](else:)[
+   (if: $chance <= 30)[
+      (set: $luz to it + 1)
+      (set: $capacidade to it + 2)
+      (track: 'ganhoCapacidade', 'play')
+      
+      ═══════════════════════════════════════
+      
+      Contra tudo, vocês se encontraram de novo.
+      Mesmo carregando tanto peso,
+      $amor ainda brilha.
+      
+      [+2 ANÁLISES]
+      
+      ═══════════════════════════════════════
+   ](else:)[
+      (set: $sombra to it + 1)
+      (set: $capacidade to it - 2)
+      (track: 'perdaCapacidade', 'play')
+      
+      ═══════════════════════════════════════
+      
+      Como você já sabia no fundo.
+      A promessa era mentira desde o início.
+      Você só não quis aceitar.
+      
+      <span class="shudder">[-2 ANÁLISES]</span>
+      
+      ═══════════════════════════════════════
+   ]
+]
+
+[[<span class="pulse">Próximo ovo</span>|Dia3-Ovo2]]
+
+
+:: Dia3-Ovo1-Neutralizar [NEUTRALIZAR] {"position":"1325,2850","size":"100,100"}
+(set: $vazio to it + 1)
+(set: $capacidade to it + 0)
+(track: 'cliqueBotao', 'play')
+
+PROTOCOLO SELECIONADO: NEUTRALIZAR
+
+OVO-6677-V descartado conforme protocolo.
+
+Era mais fácil assim.
+Deixar $amor no aeroporto.
+Seguir em frente sem olhar pra trás.
+
+[[<span class="pulse">Próximo ovo</span>|Dia3-Ovo2]]
+
+
+:: Dia3-Ovo1-Observar [OBSERVAR] {"position":"1075,2850","size":"100,100"}
+(set: $capacidade to it - 1)
+(track: 'cliqueBotao', 'play')
+═══════════════════════════════════════
+ANÁLISE DETALHADA — OVO-6677-V
+═══════════════════════════════════════
+
+Aproximando sensores...
+
+Temperatura superficial: 38.9°C
+Densidade: Leve
+Padrão de casca: Transparente em algumas áreas
+Resposta a estímulos: Forte
+
+Conteúdo interno parcialmente visível:
+- Figura 1: Identificação facial impossível
+- Figura 2: $amor
+
+Áudio capturado:
+"Não demora, tá? Eu vou te esperar."
+"Prometo que volto."
+
+Vocês se reencontraram?
+Ou a promessa ficou vazia?
+
+
+ERRO: Este ovo não deveria estar aqui.
+
+═══════════════════════════════════════
+
+[[<span class="pulse">Voltar</span>|Dia3-Ovo1]]
+
+
+:: Dia3-Ovo2 [DETALHES-OVO] {"position":"1200,2975","size":"100,100"}
+(track: 'cliqueBotao', 'play')
+═══════════════════════════════════════
+CARREGANDO OVO 2/3...
+═══════════════════════════════════════
+
+OVO-9012-T
+
+ORIGEM: Você conhece a origem.
+COMPOSIÇÃO: Fragmentada
+SINAIS VITAIS: Críticos
+OBSERVAÇÕES: Casca rachada. Vazamento detectado.
+Análise: chuva, terra molhada, silêncio.
+Contém: algo que você tentou esquecer.
+
+<pre>
+    .---.
+   &#47;  X  &#92;
+   &#92;     &#47;
+    `---'
+</pre>
+
+═══════════════════════════════════════
+(if: $capacidade <= 2)[<span class="blink"> ⚠ CAPACIDADE CRÍTICA</span>]
+(if: $capacidade <= 0)[<span class="blink-irregular"><span class="rumble">  ⚠ SEM ANÁLISES DISPONÍVEIS</span></span>]
+═══════════════════════════════════════
+
+(if: $capacidade > 0)[
+  [[<span class="pulse">OBSERVAR DETALHES</span>|Dia3-Ovo2-Observar]]
+](else:)[
+  <span class="blur">(text-style:"underline")[OBSERVAR DETALHES]</span> [<strong>ANÁLISES ESGOTADAS</strong>]]
+[[<span class="pulse">INCUBAR</span>|Dia3-Ovo2-Incubar]]
+[[<span class="pulse">NEUTRALIZAR</span>|Dia3-Ovo2-Neutralizar]]
+
+
+:: Dia3-Ovo2-Incubar [INCUBAR] {"position":"1200,3100","size":"100,100"}
+(set: $sombra to it + 1)
+(set: $capacidade to it - 2)
+(track: 'perdaCapacidade', 'play')
+
+PROTOCOLO SELECIONADO: INCUBAR
+
+OVO-9012-T transferido para câmara de incubação.
+<br></br>
+Você nunca conseguiu deixar isso pra trás.
+<br></br>
+<span class="rumble">[-2 CAPACIDADE DE ANÁLISE.]</span> Peso esmagador.
+<br></br>
+[[<span class="pulse">Próximo ovo</span>|Dia3-Ovo3]]
+
+
+:: Dia3-Ovo2-Neutralizar [NEUTRALIZAR] {"position":"1325,3100","size":"100,100"}
+(set: $sombra to it - 1)
+(set: $capacidade to it + 2)
+(track: 'ganhoCapacidade', 'play')
+
+PROTOCOLO SELECIONADO: NEUTRALIZAR
+
+OVO-9012-T descartado conforme protocolo.
+<br></br>
+Talvez seja hora de perdoar.
+<br></br>
+[+2 CAPACIDADE DE ANÁLISE.] Sistema libertado!
+<br></br>
+[[<span class="pulse">Próximo ovo</span>|Dia3-Ovo3]]
+
+
+:: Dia3-Ovo2-Observar [OBSERVAR] {"position":"1075,3100","size":"100,100"}
+(set: $capacidade to it - 1)
+(track: 'cliqueBotao', 'play')
+═══════════════════════════════════════
+ANÁLISE DETALHADA — OVO-9012-T
+═══════════════════════════════════════
+
+Aproximando sensores...
+
+Temperatura superficial: 15.3°C
+Densidade: Pesada
+Padrão de casca: Severamente danificada
+Resposta a estímulos: Dor
+
+Conteúdo vazando:
+- Memória fragmentada
+- Som de chuva constante
+- Cheiro de flores
+- $responsavel
+
+"Não é sua culpa."
+"Você era só uma criança."
+
+Por que você guarda isso?
+
+═══════════════════════════════════════
+
+[[<span class="pulse">Voltar</span>|Dia3-Ovo2]]
+
+
+:: Dia3-Ovo3 [DETALHES-OVO] {"position":"1200,3225","size":"100,100"}
+(track: 'cliqueBotao', 'play')
+═══════════════════════════════════════
+CARREGANDO OVO 3/3...
+═══════════════════════════════════════
+
+OVO-1156-A
+
+ORIGEM: Setor 3
+COMPOSIÇÃO: Cristalina
+SINAIS VITAIS: Fortes
+OBSERVAÇÕES: Casca brilhante, colorida.
+Som interno: risadas, música.
+Aquecimento constante.
+Identificação: $amigo está dentro.
+
+
+<pre>
+    .---.
+   &#47;  ☆  &#92;
+   &#92;     &#47;
+    `---'
+</pre>
+
+═══════════════════════════════════════
+(if: $capacidade <= 2)[<span class="blink"> ⚠ CAPACIDADE CRÍTICA</span>]
+(if: $capacidade <= 0)[<span class="blink-irregular"><span class="rumble">  ⚠ SEM ANÁLISES DISPONÍVEIS</span></span>]
+═══════════════════════════════════════
+
+(if: $capacidade > 0)[
+  [[<span class="pulse">OBSERVAR DETALHES</span>|Dia3-Ovo3-Observar]]
+](else:)[
+  <span class="blur">(text-style:"underline")[OBSERVAR DETALHES]</span> [<strong>ANÁLISES ESGOTADAS</strong>]]
+[[<span class="pulse">INCUBAR</span>|Dia3-Ovo3-Incubar]]
+[[<span class="pulse">NEUTRALIZAR</span>|Dia3-Ovo3-Neutralizar]]
+
+
+:: Dia3-Ovo3-Incubar [INCUBAR] {"position":"1200,3350","size":"100,100"}
+(set: $luz to it + 1)
+(set: $capacidade to it + 2)
+(track: 'ganhoCapacidade', 'play')
+
+PROTOCOLO SELECIONADO: INCUBAR
+
+OVO-1156-A transferido para câmara de incubação.
+<br></br>
+Você não perdeu tudo.
+<br></br>
+[+2 CAPACIDADE DE ANÁLISE.] Luz restauradora.
+<br></br>
+[[<span class="pulse">Finalizar turno</span>|Dia3-Fim]]
+
+
+:: Dia3-Ovo3-Neutralizar [NEUTRALIZAR] {"position":"1325,3350","size":"100,100"}
+(set: $vazio to it + 1)
+(set: $capacidade to it - 2)
+(track: 'perdaCapacidade', 'play')
+
+PROTOCOLO SELECIONADO: NEUTRALIZAR
+
+OVO-1156-A descartado conforme protocolo.
+<br></br>
+<span class="rumble">[-2 CAPACIDADE DE ANÁLISE.]</span> Por que descartou essa?
+<br></br>
+[[<span class="pulse">Finalizar turno</span>|Dia3-Fim]]
+
+
+:: Dia3-Ovo3-Observar [OBSERVAR] {"position":"1075,3350","size":"100,100"}
+(set: $capacidade to it - 1)
+(track: 'cliqueBotao', 'play')
+═══════════════════════════════════════
+ANÁLISE DETALHADA — OVO-1156-A
+═══════════════════════════════════════
+
+Aproximando sensores...
+
+Temperatura superficial: 39.1°C
+Densidade: Média
+Padrão de casca: Vibrante, translúcida
+Resposta a estímulos: Alegria
+
+Conteúdo detectado:
+- Risadas
+- Conversas até tarde
+- Segredos compartilhados
+- "A gente sempre vai ser amigo"
+
+$amigo ainda está lá, esperando.
+
+═══════════════════════════════════════
+
+[[<span class="pulse">Voltar</span>|Dia3-Ovo3]]
+
+
+:: Dia4-Fim {"position":"1200,4475","size":"100,100"}
+═══════════════════════════════════════
+T̷̢̛U̴̧R̷̨N̴̛O̸̢ ̷̨0̴̛4̸̢ ̷̨C̴̛O̸̢N̷̨C̴̛L̸̢Ų̷Í̴̛D̸̢Ǫ̷
+═══════════════════════════════════════
+
+Análises restantes: (print: $capacidade)
+
+Um último dia.
+Um último ovo.
+
+Você.
+
+═══════════════════════════════════════
+
+[[<span class="pulse">...</span>|Transicao-Dia5]]
+
+
+:: Dia4-Ovo1 [DETALHES-OVO] {"position":"1200,3850","size":"100,100"}
+(track: 'glitch', 'play')
+(track: 'cliqueBotao', 'play')
+═══════════════════════════════════════
+CARREGANDO OVO 1/3...
+═══════════════════════════════════════
+
+OVO-<span class="shudder">[ERRO]</span>-M
+
+ORIGEM: Sua infância.
+COMPOSIÇÃO: Frágil
+SINAIS VITAIS: Você decide.
+OBSERVAÇÕES: 
+"Não é sua culpa."
+"Você era só uma criança."
+"Ela não voltou por sua causa?"
+
+<pre>
+    _̴_̴_̴
+   &#47;̴ ̴ ̴ ̴&#92;̴
+  |̴ ̴ ̴ ̴ ̴|̴
+   &#92;̴_̴_̴_̴&#47;̴
+</pre>
+
+<span class="shudder"><span class="blur">Por que você guarda isso?</span></span>
+
+═══════════════════════════════════════
+(if: $capacidade <= 2)[<span class="blink"> ⚠ CAPACIDADE CRÍTICA</span>]
+(if: $capacidade <= 0)[<span class="blink-irregular"><span class="rumble">  ⚠ SEM ANÁLISES DISPONÍVEIS</span></span>]
+═══════════════════════════════════════
+
+(if: $capacidade > 0)[
+  [[<span class="pulse">OBSERVAR DETALHES</span>|Dia4-Ovo1-Observar]]
+](else:)[
+  <span class="blur">(text-style:"underline")[OBSERVAR DETALHES]</span> [<strong>ANÁLISES ESGOTADAS</strong>]]
+[[<span class="pulse">INCUBAR</span>|Dia4-Ovo1-Incubar]]
+[[<span class="pulse">NEUTRALIZAR</span>|Dia4-Ovo1-Neutralizar]]
+
+
+:: Dia4-Ovo1-Incubar [INCUBAR] {"position":"1200,3975","size":"100,100"}
+(set: $sombra to it + 2)
+(set: $capacidade to it - 2)
+(track: 'perdaCapacidade', 'play')
+
+PROTOCOLO SELECIONADO: INCUBAR
+
+Você escolheu carregar isso.
+<br></br>
+Mais um dia.
+Mais uma noite.
+Mais um ano.
+<br></br>
+<span class="blink-irregular"><span class="rumble">[-2 CAPACIDADE DE ANÁLISE.]</span></span> SOBRECARGA CRÍTICA!
+<br></br>
+[[<span class="pulse">Próximo ovo</span>|Dia4-Ovo2]]
+
+
+:: Dia4-Ovo1-Neutralizar [NEUTRALIZAR] {"position":"1325,3975","size":"100,100"}
+(set: $sombra to it - 2)
+(set: $capacidade to it + 1)
+(track: 'ganhoCapacidade', 'play')
+
+PROTOCOLO SELECIONADO: NEUTRALIZAR
+<br></br>
+Você escolheu deixar ir.
+<br></br>
+Não era sua culpa.
+Nunca foi.
+<br></br>
+[+1 CAPACIDADE DE ANÁLISE.]
+<br></br>
+[[<span class="pulse">Próximo ovo</span>|Dia4-Ovo2]]
+
+
+:: Dia4-Ovo1-Observar [OBSERVAR] {"position":"1075,3975","size":"100,100"}
+(set: $capacidade to it - 1)
+(track: 'cliqueBotao', 'play')
+═══════════════════════════════════════
+ANÁLISE DETALHADA — OVO-[ERRO]-M
+═══════════════════════════════════════
+
+Você sabe o que tem aqui dentro.
+
+$responsavel
+
+A última conversa.
+As palavras que você não disse.
+O silêncio que durou para sempre.
+
+Você carrega isso há quanto tempo?
+
+Seu maior medo: $medo
+É por causa disso?
+
+═══════════════════════════════════════
+
+[[<span class="pulse">Voltar</span>|Dia4-Ovo1]]
+
+
+:: Dia4-Ovo2 [DETALHES-OVO] {"position":"1200,4100","size":"100,100"}
+(track: 'cliqueBotao', 'play')
+═══════════════════════════════════════
+CARREGANDO OVO 2/3...
+═══════════════════════════════════════
+
+OVO-<span class="blink-veryslow">???</span>?-H
+
+ORIGEM: Ontem. Ou foi há anos?
+COMPOSIÇÃO: Pesada
+SINAIS VITAIS: Incertos
+OBSERVAÇÕES:
+Última conversa importante.
+Palavras ditas. Palavras não ditas.
+
+<pre>
+    ___
+   &#47; . &#92;
+  | ... |
+   &#92;___&#47;
+</pre>
+
+<h4><strong><em>Você pode escolher como lembrar disso.</em></strong></h4>
+
+═══════════════════════════════════════
+(if: $capacidade <= 2)[<span class="blink"> ⚠ CAPACIDADE CRÍTICA</span>]
+(if: $capacidade <= 0)[<span class="blink-irregular"><span class="rumble">  ⚠ SEM ANÁLISES DISPONÍVEIS</span></span>]
+═══════════════════════════════════════
+
+(if: $capacidade > 0)[
+  [[<span class="pulse">OBSERVAR DETALHES</span>|Dia4-Ovo2-Observar]]
+](else:)[
+  <span class="blur">(text-style:"underline")[OBSERVAR DETALHES]</span> [<strong>ANÁLISES ESGOTADAS</strong>]]
+[[<span class="pulse">DAR UMA CHANCE (Incubar)</span>|Dia4-Ovo2-Incubar]]
+[[<span class="pulse">NEUTRALIZAR</span>|Dia4-Ovo2-Neutralizar]]
+
+
+:: Dia4-Ovo2-Incubar [INCUBAR] {"position":"1200,4225","size":"100,100"}
+Você decide dar uma chance a esta memória...
+
+Ressignificando...
+
+(set: $chance to (random: 1, 100))
+
+(if: $luz > $sombra)[
+   (if: $chance <= 70)[
+      (set: $luz to it + 1)
+      (set: $capacidade to it + 2)
+      (track: 'ganhoCapacidade', 'play')
+      
+      ═══════════════════════════════════════
+      
+      Você entendeu que não era sobre ter dito tudo.
+      Era sobre ter estado lá.
+      E você esteve.
+      
+      As palavras não ditas não apagam
+      a presença que você ofereceu.
+      
+      [+2 ANÁLISES]
+      
+      ═══════════════════════════════════════
+   ](else:)[
+      (set: $sombra to it + 1)
+      (set: $capacidade to it - 2)
+      (track: 'perdaCapacidade', 'play')
+      
+      ═══════════════════════════════════════
+      
+      As palavras não ditas ecoam.
+      "E se eu tivesse falado?"
+      Uma pergunta sem resposta.
+      Só peso.
+      
+      <span class="shudder">[-2 ANÁLISES]</span>
+      
+      ═══════════════════════════════════════
+   ]
+](else-if: $luz is $sombra)[
+   (if: $chance <= 50)[
+      (set: $luz to it + 1)
+      (set: $capacidade to it + 2)
+      (track: 'ganhoCapacidade', 'play')
+      
+      ═══════════════════════════════════════
+      
+      Você fez o que podia.
+      Com o que sabia.
+      Com o tempo que tinha.
+      
+      Isso tem que ser suficiente.
+      
+      [+2 ANÁLISES]
+      
+      ═══════════════════════════════════════
+   ](else:)[
+      (set: $sombra to it + 1)
+      (set: $capacidade to it - 2)
+      (track: 'perdaCapacidade', 'play')
+      
+      ═══════════════════════════════════════
+      
+      Mas não foi suficiente, foi?
+      As palavras ficaram presas.
+      E agora é tarde demais.
+      
+      <span class="shudder">[-2 ANÁLISES]</span>
+      
+      ═══════════════════════════════════════
+   ]
+](else:)[
+   (if: $chance <= 30)[
+      (set: $luz to it + 1)
+      (set: $capacidade to it + 2)
+      (track: 'ganhoCapacidade', 'play')
+      
+      ═══════════════════════════════════════
+      
+      Mesmo carregando tanto,
+      você consegue ver:
+      Você tentou. Você se importou.
+      Isso significa algo.
+      
+      [+2 ANÁLISES]
+      
+      ═══════════════════════════════════════
+   ](else:)[
+      (set: $sombra to it + 1)
+      (set: $capacidade to it - 2)
+      (track: 'perdaCapacidade', 'play')
+      
+      ═══════════════════════════════════════
+      
+      Você carrega esse arrependimento como pedra.
+      "Eu deveria ter..."
+      "Por que eu não..."
+      
+      Não tem resposta. Só dói.
+      
+      <span class="shudder">[-2 ANÁLISES]</span>
+      
+      ═══════════════════════════════════════
+   ]
+]
+
+[[<span class="pulse">Próximo ovo</span>|Dia4-Ovo3]]
+
+
+:: Dia4-Ovo2-Neutralizar [NEUTRALIZAR] {"position":"1325,4225","size":"100,100"}
+(set: $vazio to it + 1)
+(set: $capacidade to it + 0)
+(track: 'cliqueBotao', 'play')
+
+PROTOCOLO SELECIONADO: NEUTRALIZAR
+<br></br>
+Você escolheu deixar essa memória ir.
+<br></br>
+Não como boa nem como ruim.
+Apenas como algo que aconteceu.
+<br></br>
+Seguir em frente às vezes é assim.
+<br></br>
+[[<span class="pulse">Próximo ovo</span>|Dia4-Ovo3]]
+
+
+:: Dia4-Ovo2-Observar [OBSERVAR] {"position":"1075,4225","size":"100,100"}
+(set: $capacidade to it - 1)
+(track: 'cliqueBotao', 'play')
+═══════════════════════════════════════
+ANÁLISE DETALHADA — OVO-????-H
+═══════════════════════════════════════
+
+A última vez que foi importante.
+
+Mensagens não enviadas.
+Ligações que você não fez.
+Desculpas que você ensaiou sozinho no escuro.
+
+Ou talvez...
+
+Você disse tudo que precisava.
+Estava presente quando importava.
+Fez o que podia com o que tinha.
+
+Duas versões da mesma memória.
+
+Qual você vai guardar?
+
+═══════════════════════════════════════
+
+[[<span class="pulse">Voltar</span>|Dia4-Ovo2]]
+
+
+:: Dia4-Ovo3 [DETALHES-OVO] {"position":"1200,4350","size":"100,100"}
+(track: 'glitch', 'play')
+(track: 'cliqueBotao', 'play')
+<div class="scanline-intense">
+═══════════════════════════════════════
+CARREGANDO OVO 3/3...
+═══════════════════════════════════════
+
+OVO-$nome-$cor
+
+ORIGEM: Você.
+COMPOSIÇÃO: Tudo que você escolheu guardar.
+SINAIS VITAIS: Fracos. Críticos. Dependendo.
+OBSERVAÇÕES:
+
+Este não é um ovo.
+Nunca foi.
+
+Você sabe o que é isso, $nome.
+
+<pre>
+      _____
+    &#47;       &#92;
+   |    $    |
+   |         |
+   |         |
+    &#92;_______&#47;
+</pre>
+
+═══════════════════════════════════════
+(if: $capacidade <= 2)[<span class="blink"> ⚠ CAPACIDADE CRÍTICA</span>]
+(if: $capacidade <= 0)[<span class="blink-irregular"><span class="rumble">  ⚠ SEM ANÁLISES DISPONÍVEIS</span></span>]
+═══════════════════════════════════════
+
+(if: $capacidade > 0)[
+  [[<span class="pulse">OBSERVAR DETALHES</span>|Dia4-Ovo3-Observar]]
+](else:)[
+  <span class="blur">(text-style:"underline")[OBSERVAR DETALHES]</span> [<strong>ANÁLISES ESGOTADAS</strong>]]
+[[<span class="pulse">INCUBAR</span>|Dia4-Ovo3-Incubar]]
+[[<span class="pulse">NEUTRALIZAR</span>|Dia4-Ovo3-Neutralizar]]
+
+</div>
+
+
+:: Dia4-Ovo3-Incubar [INCUBAR] {"position":"1200,4475","size":"100,100"}
+(track: 'cliqueBotao', 'play')
+PROTOCOLO SELECIONADO: INCUBAR
+
+Você escolhe continuar.
+
+Mesmo com tudo isso.
+Mesmo carregando.
+Mesmo assim.
+
+[[<span class="pulse">Finalizar turno</span>|Dia4-Fim]]
+
+
+:: Dia4-Ovo3-Neutralizar [NEUTRALIZAR] {"position":"1325,4475","size":"100,100"}
+(track: 'cliqueBotao', 'play')
+PROTOCOLO SELECIONADO: NEUTRALIZAR
+
+...
+
+Você não pode neutralizar a si mesmo.
+
+Não assim.
+Não ainda.
+
+[[<span class="pulse">Voltar</span>|Dia4-Ovo3]]
+
+
+:: Dia4-Ovo3-Observar [OBSERVAR] {"position":"1075,4475","size":"100,100"}
+(set: $capacidade to it - 1)
+(track: 'cliqueBotao', 'play')
+═══════════════════════════════════════
+ANÁLISE DETALHADA — OVO-$nome-$cor
+═══════════════════════════════════════
+
+Você olha para dentro.
+
+Idade: $idade anos vividos.
+Cor favorita: $cor
+Maior medo: $medo
+
+Memórias incubadas: (print: $luz + $sombra)
+Memórias descartadas: (print: $vazio)
+Peso carregado: (print: $sombra)
+Luz guardada: (print: $luz)
+
+Você vê tudo que escolheu ser.
+Tudo que escolheu carregar.
+Tudo que escolheu esquecer.
+
+Este é você.
+
+═══════════════════════════════════════
+
+[[<span class="pulse">Voltar</span>|Dia4-Ovo3]]
+
+
+:: Dia5-Decisao [INCUBAR] {"position":"1200,5125","size":"100,100"}
+(track: 'cliqueBotao', 'play')
+<div class="scanline-intense">
+(if: $sombra >= 10 and $luz <= 1)[
+   Só resta uma opção.
+   
+   [[<span class="pulse">NEUTRALIZAR</span>|Final-Sombrio]]
+   
+](else-if: $luz >= 8 and $sombra <= 0 and $vazio <= 1)[
+   Duas opções aparecem.
+   
+   [[<span class="pulse">INCUBAR</span>|Final-Luminoso]]
+   [[<span class="pulse">TRANSFERIR</span>|Final-Secreto]]
+   
+](else-if: $luz >= 6 and $sombra <= 2)[
+   Você pode continuar.
+   
+   [[<span class="pulse">INCUBAR</span>|Final-Luminoso]]
+   
+](else:)[
+   Você escolhe.
+   
+   [[<span class="pulse">INCUBAR</span>|Final-Neutro-Incubar]]
+   [[<span class="pulse">NEUTRALIZAR</span>|Final-Neutro-Neutralizar]]
+]
+</div>
+
+
+:: Dia5-OvoFinal [DETALHES-OVO] {"position":"1200,5000","size":"100,100"}
+(track: 'alarmeCritico', 'play')
+(track: 'cliqueBotao', 'play')
+<div class="scanline-intense">
+═══════════════════════════════════════
+<span class="pulse">CARREGANDO...</span>
+═══════════════════════════════════════
+
+OVO-$nome-$idade-$cor
+
+ORIGEM: $idade anos de existência
+COMPOSIÇÃO: Tudo que você incubou. Tudo que destruiu.
+SINAIS VITAIS: Depende de você.
+
+ANÁLISE COMPLETA:
+
+Memórias guardadas (luz): (print: $luz)
+Memórias pesadas (sombra): (print: $sombra)
+Memórias descartadas (vazio): (print: $vazio)
+
+Maior medo: $medo
+
+Pessoas dentro deste ovo:
+- $responsavel
+- $amor
+- $amigo
+
+<span class="rumble"><pre>
+      _____
+    &#47;       &#92;
+   |   YOU   |
+   |         |
+   |         |
+    &#92;_______&#47;
+</pre></span>
+
+═══════════════════════════════════════
+(if: $capacidade <= 2)[<span class="blink"> ⚠ CAPACIDADE CRÍTICA</span>]
+(if: $capacidade <= 0)[<span class="blink-irregular"><span class="rumble">  ⚠ SEM ANÁLISES DISPONÍVEIS</span></span>]
+═══════════════════════════════════════
+
+Protocolo final disponível.
+
+Você está pronto para se avaliar?
+
+(if: $capacidade > 0)[
+  [[<span class="pulse">OBSERVAR UMA ÚLTIMA VEZ</span>|Dia5-OvoFinal-Observar]]
+](else:)[
+  <span class="blur">(text-style:"underline")[OBSERVAR DETALHES]</span> [<strong>ANÁLISES ESGOTADAS</strong>]]
+[[<span class="pulse">DECIDIR</span>|Dia5-Decisao]]
+</div>
+
+
+:: Dia5-OvoFinal-Observar [OBSERVAR] {"position":"1000,5050","size":"100,100"}
+(track: 'cliqueBotao', 'play')
+<div class="scanline-intense">
+═══════════════════════════════════════
+ANÁLISE FINAL
+═══════════════════════════════════════
+
+Você olha para tudo que você é.
+
+Cada escolha que fez aqui.
+Cada memória que guardou.
+Cada dor que carregou.
+Cada alegria que protegeu.
+
+Luz total: (print: $luz)
+Sombra total: (print: $sombra)
+Vazio total: (print: $vazio)
+
+Este é você, $nome.
+
+Com $idade anos.
+Com medo de $medo.
+Com memórias de $responsavel, $amor, $amigo.
+
+Imperfeito.
+Completo.
+Humano.
+
+═══════════════════════════════════════
+
+[[<span class="pulse">Voltar</span>|Dia5-OvoFinal]]
+</div>
+
+
+:: Disclaimer {"position":"100,50","size":"100,100"}
+(align:"=><=")+(box:"=XXX=")
+[═══════════════════════════════════════
+            ⚠️ AVISO DE CONTEÚDO ⚠️
+═══════════════════════════════════════
+
+Este jogo contém:
+- Temas de saúde mental e suicídio
+- Efeitos visuais que podem causar desconforto
+  em pessoas com epilepsia fotossensível
+
+Em caso de crise: CVV - 188 (24h, gratuito)
+
+═══════════════════════════════════════
+
+[[<span class="pulse">Prosseguir com cautela</span>|Home]]
+]
+
+
+:: Final-Luminoso [FINAL] {"position":"1125,5350","size":"100,100"}
+(track: 'ganhoCapacidade', 'play')
+(track: 'cliqueBotao', 'play')
+═══════════════════════════════════════
+PROTOCOLO SELECIONADO: INCUBAR
+═══════════════════════════════════════
+
+OVO-$nome — Potencial elevado detectado.
+
+Luz guardada: (print: $luz)
+Memórias protegidas de $responsavel, $amor, $amigo.
+
+Você escolheu guardar o que importa.
+Mesmo quando doeu.
+Mesmo quando foi difícil.
+
+O ovo se ilumina.
+
+Uma nova opção aparece na tela:
+
+<span class="pulse">TRANSFERIR PARA MENTORIA</span>
+
+Você processou seus próprios ovos.
+Enfrentou suas memórias.
+Agora pode ajudar outros a fazerem o mesmo.
+
+Sistema alterado: <span class="blink">MODO MENTOR ativado.</span>
+
+Seu turno não acabou, $nome.
+Ele está apenas começando.
+
+═══════════════════════════════════════
+
+FIM — "Guardião de Memórias"
+
+═══════════════════════════════════════
+
+
+:: Final-Neutro-Incubar [FINAL] {"position":"1375,5350","size":"100,100"}
+(track: 'cliqueBotao', 'play')
+═══════════════════════════════════════
+PROTOCOLO SELECIONADO: INCUBAR
+═══════════════════════════════════════
+
+OVO-$nome — Análise inconclusiva.
+
+Luz: (print: $luz)
+Sombra: (print: $sombra)
+
+Você não é perfeito.
+Carrega dores.
+Guarda alegrias.
+Ambos pesam.
+
+Mas você escolhe continuar.
+
+Incubação iniciada...
+
+Amanhã haverá mais ovos.
+Mais memórias para processar.
+Mais escolhas para fazer.
+
+E você estará lá.
+
+═══════════════════════════════════════
+
+FIM — "Mais Um Dia"
+
+═══════════════════════════════════════
+
+
+:: Final-Neutro-Neutralizar [FINAL] {"position":"1500,5350","size":"100,100"}
+(track: 'perdaCapacidade', 'play')
+(track: 'cliqueBotao', 'play')
+═══════════════════════════════════════
+PROTOCOLO SELECIONADO: NEUTRALIZAR
+═══════════════════════════════════════
+
+OVO-$nome — Análise inconclusiva.
+
+Você carrega luz: (print: $luz)
+Você carrega sombra: (print: $sombra)
+
+Mas hoje, você escolhe parar.
+
+Não por fraqueza.
+Não por medo.
+Mas porque às vezes recomeçar
+é a decisão mais corajosa.
+
+Sistema processando...
+
+Você pode tentar de novo.
+De forma diferente.
+Mais leve.
+
+A tela escurece.
+
+Mas amanhã é outro dia.
+
+═══════════════════════════════════════
+
+FIM — "Recomeço"
+
+═══════════════════════════════════════
+
+
+:: Final-Secreto [FINAL] {"position":"1250,5350","size":"100,100"}
+(track: 'ganhoCapacidade', 'play')
+(track: 'cliqueBotao', 'play')
+═══════════════════════════════════════
+PROTOCOLO SELECIONADO: TRANSFERIR
+═══════════════════════════════════════
+
+ANOMALIA DETECTADA.
+
+OVO-$nome — Este ovo não deveria existir aqui.
+
+Luz pura: (print: $luz)
+Sombra: (print: $sombra)
+Vazio: (print: $vazio)
+
+Você guardou apenas o que te faz brilhar.
+Deixou ir o que te machucava.
+Não acumulou peso desnecessário.
+
+Sistema: "Como você conseguiu?"
+
+Você responde: "Escolhendo."
+
+A tela pisca.
+
+<span class="blink"><span class="shudder">[ERRO]
+[ERRO]
+[ERRO]
+</span></span>
+
+Você nunca esteve preso, $nome.
+
+<span class="shudder">O sistema era você.
+A central era você.
+Os ovos eram você.</span>
+
+E agora você entende.
+
+A tela se apaga.
+
+Você desconecta.
+
+Lá fora, o sol está nascendo.
+
+═══════════════════════════════════════
+
+FIM — "Livre"
+
+═══════════════════════════════════════
+
+
+:: Final-Sombrio [FINAL] {"position":"1000,5350","size":"100,100"}
+(track: 'alarmeCritico', 'play')
+(track: 'cliqueBotao', 'play')
+═══════════════════════════════════════
+PROTOCOLO SELECIONADO: NEUTRALIZAR
+═══════════════════════════════════════
+
+OVO-$nome — Deterioração crítica detectada.
+
+Você carregou demais.
+Por tempo demais.
+Sozinho demais.
+
+O peso de $sombra memórias.
+O medo de $medo.
+A ausência de luz.
+
+Sistema executando protocolo de autolimpeza...
+
+<span class="blink-veryslow">.</span>
+
+<span class="blink-veryslow">..</span>
+
+<span class="blink-veryslow">...</span>
+
+Às vezes, descansar não é desistir.
+
+Às vezes, é o único ato de coragem que resta.
+
+═══════════════════════════════════════
+
+FIM — "O Peso do Silêncio"
+
+Se precisar de ajuda real, ligue 188 (CVV).
+
+═══════════════════════════════════════
+
+
+:: Home {"position":"300,50","size":"100,100"}
+{
+(track: 'bgmusic', 'loop', true)
+(track: 'bgmusic', 'playwhenpossible')
+}
+(track: 'cliqueBotao', 'play')
+<span class="pulse"><h1>egg.exe </h1></span>
+═══════════════════════════════════════
+  SISTEMA DE CATALOGAÇÃO MNEMÔNICA v2.3
+  CENTRAL DE TRIAGEM 04B
+═══════════════════════════════════════
+
+Inicializando...
+
+
+[[<span class="pulse">Continuar</span>|Login]]
+
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<h5>Jogo desenvolvido por Henrique Karez
+
+Disponível em: https://battledawg.itch.io</h5>
+
+
+<h6>With a Stamp by Twin Musicom is licensed under a Creative Commons Attribution 4.0 license. https://creativecommons.org/licenses/by/4.0/
+
+Artist: http://www.twinmusicom.org/</h6>
+
+
+
+
+:: Login {"position":"525,50","size":"100,100"}
+(set: $capacidade to 6)
+(set: $luz to 0)
+(set: $sombra to 0)
+(set: $vazio to 0)
+(track: 'cliqueBotao', 'play')
+
+
+═══════════════════════════════════════
+  SISTEMA DE CATALOGAÇÃO MNEMÔNICA v2.3
+  ACESSO RESTRITO
+═══════════════════════════════════════
+
+LOGIN: (input-box: bind $nome, "=X=", 1)
+
+SENHA: (input-box: bind $senha, "=X=", 1)
+
+[[<span class="pulse">ACESSAR</span>|Validacao]]
+
+
+:: Sistema-Dia1 [DIA-1] {"position":"1200,75","size":"100,100"}
+(track: 'cliqueBotao', 'play')
+═══════════════════════════════════════
+  SISTEMA DE CATALOGAÇÃO MNEMÔNICA v2.3
+  CENTRAL DE TRIAGEM 04B
+═══════════════════════════════════════
+
+Olá, $nome.
+
+STATUS: 27 ovos aguardando análise.
+TURNO: 01
+
+═══════════════════════════════════════
+
+Iniciar protocolo de triagem?
+
+[[<span class="pulse">INICIAR</span>|Dia1-Ovo1]]
+
+
+:: Sistema-Dia2 [DIA-2] {"position":"1200,1475","size":"100,100"}
+(track: 'cliqueBotao', 'play')
+═══════════════════════════════════════
+  SISTEMA DE CATALOGAÇÃO MNEMÔNICA v2.3
+  CENTRAL DE TRIAGEM 04B
+═══════════════════════════════════════
+
+Olá, $nome.
+
+STATUS: 45 ovos aguardando análise.
+TURNO: 02
+
+<br></br>
+AVISO: Capacidade de análise limitada detectada!
+Análises restantes: $capacidade ovos
+(if: $capacidade <= 3)[<span class="blink">⚠️ CAPACIDADE CRÍTICA</span>]
+Escolha sabiamente.
+<br></br>
+═══════════════════════════════════════
+
+[[<span class="pulse">INICIAR PROTOCOLO</span>|Dia2-Ovo1]]
+
+
+:: Sistema-Dia3 [DIA-3] {"position":"1200,2600","size":"100,100"}
+(track: 'glitch', 'play')
+(track: 'cliqueBotao', 'play')
+═══════════════════════════════════════
+ <span class = "shudder">S̷I̴S̴T̴E̴M̴A̴</span> DE CATALOGAÇÃO MNEMÔNICA v2.3
+  CENTRAL DE TRIAGEM 0..0.024B
+═══════════════════════════════════════
+
+Olá, $nome.
+
+STATUS:  31<span class="shudder"><span class="blink-irregular"> 3̴5̴ </span></span>31 ovos aguardando análise.
+TURNO: 03
+<br></br>
+Análises restantes: $capacidade
+(if: $capacidade <= 2)[<span class="blink-irregular">🚨 CAPACIDADE MUITO BAIXA</span>]
+Cada escolha importa.
+<br></br>
+═══════════════════════════════════════
+
+[[<span class="pulse">INICIAR PROTOCOLO</span>|Dia3-Ovo1]]
+
+
+:: Sistema-Dia4 [DIA-4] {"position":"1200,3675","size":"100,100"}
+(track: 'glitch', 'play')
+(track: 'cliqueBotao', 'play')
+═══════════════════════════════════════
+<span class="blur"><span class="shudder">S̷I̷S̶T̸E̶M̴A̵ ̸D̴E̷ ̷C̷A̵T̷A̵L̴O̷G̵A̶Ç̶Ã̵O̷ ̶M̸N̵E̶M̷Ô̶N̴I̶C̴A̷ ̶v̴2̷.̴3̸</span></span>
+═══════════════════════════════════════
+
+Olá, $nome.
+
+STATUS: <span class="blink-veryslow">∞ 12 ∞</span> ovos aguardando análise.
+TURNO: <span class="shudder">0̴4̴</span>
+<br></br>
+
+Análises restantes: $capacidade
+(if: $capacidade <= 1)[<span class="blink-irregular"><span class="rumble">⚠️ ÚLTIMA ANÁLISE DISPONÍVEL</span></span>]
+(if: $capacidade <= 0)[<span class="blink-irregular"><span class="rumble">🚨 SEM ANÁLISES - MODO CEGO</span></span>]
+<br></br>
+
+<span class="blink-irregular">Você ainda acha que isso é sobre ovos?</span>
+
+═══════════════════════════════════════
+
+[[<span class="pulse">CONTINUAR</span>|Dia4-Ovo1]]
+
+
+:: Sistema-Dia5 [DIA-5] {"position":"1200,4825","size":"100,100"}
+(track: 'alarmeCritico', 'play')
+(track: 'cliqueBotao', 'play')
+<div class="scanline-intense">
+═══════════════════════════════════════
+ <span class="pulse"><span class="blink-fade">[SISTEMA OFFLINE]</span></span>
+═══════════════════════════════════════
+
+$nome.
+
+<span class="shudder">Não há mais STATUS.
+Não há mais TURNO.
+Não há mais protocolo.</span>
+
+Apenas um último ovo.
+
+<em><strong>O seu.</strong></em>
+
+═══════════════════════════════════════
+
+[[<span class="pulse">Continuar</span>|Dia5-OvoFinal]]
+</div>
+
+
+:: Transicao-Dia2 {"position":"1200,1350","size":"100,100"}
+(track: 'cliqueBotao', 'play')
+.
+
+..
+
+...
+
+Sistema reiniciando...
+
+[[<span class="pulse">Conectar</span>->Sistema-Dia2]]
+
+
+:: Transicao-Dia3 {"position":"1200,2475","size":"100,100"}
+(track: 'glitch', 'play')
+(track: 'cliqueBotao', 'play')
+.
+
+..
+
+...
+
+<span class="shudder">S̴i̴s̴t̴e̴m̴a̴ ̴r̴e̴i̴n̴i̴c̴i̴a̴n̴d̴o̴.̴.̴.̴</span>
+
+[[<span class="pulse">Conectar</span>|Sistema-Dia3]]
+
+
+:: Transicao-Dia4 {"position":"1200,3500","size":"100,100"}
+(track: 'glitch', 'play')
+(track: 'cliqueBotao', 'play')
+.
+
+..
+
+...
+
+<span class="shudder">S̷̢̛I̴̧S̷T̴E̸̢M̷̨A̴̛ ̸D̷E̶S̷̢Ţ̴A̶̢B̷̨I̴̛L̸̢I̴̧Z̷̨A̴̛D̸̢Ǫ̷</span>
+
+<span class="blink">R̴e̴i̴n̴i̴c̴i̴a̴n̴d̴o̴.̴.̴.̴</span>
+
+[[<span class="pulse">Conectar</span>|Sistema-Dia4]]
+
+
+:: Transicao-Dia5 {"position":"1200,4650","size":"100,100"}
+(track: 'alarmeCritico', 'play')
+(track: 'cliqueBotao', 'play')
+<div class="scanline-intense">
+.
+
+..
+
+...
+
+<span class="blink-fade">[S̷̢̛I̴̧S̷T̴E̸̢M̷̨A̴̛ ̸D̷E̶S̷A̴T̷I̸V̴A̶D̷O̶]</span>
+
+Nunca houve 27 ovos.
+Nunca houve uma Central.
+
+Só <strong>você.</strong>
+Sempre foi <strong>só você</strong>.
+
+[[<span class="pulse">...</span>|Sistema-Dia5]]
+</div>
+
+
+:: Validacao {"position":"725,50","size":"100,100"}
+(track: 'cliqueBotao', 'play')
+Validando credenciais...
+
+.
+
+..
+
+...
+
+(if: $nome is "")[
+ERRO: Campo LOGIN obrigatório.
+[[<span class="pulse">Tentar novamente</span>|Login]]
+](else:)[
+Acesso concedido.
+[[<span class="pulse">Prosseguir</span>|Confirmacao]]
+]
+
+
+:: hal.tracks {"position":"325,300","size":"100,100"}
+bgmusic: ./audio/ambienceSound.mp3
+ganhoCapacidade: ./audio/ganhoCapacidade.mp3
+perdaCapacidade: ./audio/perdaCapacidade.mp3
+glitch: ./audio/glitch.mp3
+alarmeCritico: ./audio/alarmeCritico.mp3
+cliqueBotao: ./audio/cliqueBotao.mp3
+
+
+:: StoryScript [script]
+// Sistema de flicker aleatório
+(function() {
+    const html = document.querySelector('html');
+    let flickerAtivo = false;
+    
+    function iniciarFlicker() {
+        if (flickerAtivo) return;
+        flickerAtivo = true;
+        html.style.animation = 'flicker 0.15s infinite';
+        
+        // Duração do flicker: entre 2 e 4 segundos
+        const duracaoFlicker = Math.random() * 1500 + 500;
+        
+        setTimeout(pararFlicker, duracaoFlicker);
+    }
+    
+    function pararFlicker() {
+        flickerAtivo = false;
+        html.style.animation = 'none';
+        
+        // Tempo estável: entre 3 e 7 segundos
+        const tempoEstavel = Math.random() * 4000 + 3000;
+        
+        setTimeout(iniciarFlicker, tempoEstavel);
+    }
+    
+    // Começa estável após 3 segundos
+    setTimeout(iniciarFlicker, 3000);
+})();
+
+
+
+
+// Toggle de flicker
+$(document).ready(function() {
+    // Cria botão
+    $('body').append('<button id="flicker-toggle">FLICKER: ON</button>');
+    
+    var flickerEnabled = true;
+    
+    $('#flicker-toggle').click(function() {
+        flickerEnabled = !flickerEnabled;
+        
+        if (flickerEnabled) {
+            $('html').removeClass('no-flicker');
+            $(this).text('FLICKER: ON');
+        } else {
+            $('html').addClass('no-flicker');
+            $(this).text('FLICKER: OFF');
+        }
+    });
+});
+
+// Toggle de flicker - JavaScript puro
+window.addEventListener('DOMContentLoaded', function() {
+    // Cria botão
+    var btn = document.createElement('button');
+    btn.id = 'flicker-toggle';
+    btn.textContent = 'FLICKER: ON';
+    btn.style.cssText = 'position: fixed; bottom: 20px; right: 20px; background-color: rgba(0, 255, 65, 0.2); border: 1px solid #00ff41; color: #00ff41; padding: 10px 15px; font-family: Courier New, monospace; font-size: 12px; cursor: pointer; z-index: 10000;';
+    
+    document.body.appendChild(btn);
+    
+    var flickerEnabled = true;
+    
+    btn.addEventListener('click', function() {
+        flickerEnabled = !flickerEnabled;
+        var html = document.querySelector('html');
+        
+        if (flickerEnabled) {
+            html.classList.remove('no-flicker');
+            btn.textContent = 'FLICKER: ON';
+        } else {
+            html.classList.add('no-flicker');
+            btn.textContent = 'FLICKER: OFF';
+        }
+    });
+    
+    console.log('Botão de flicker criado!');
+});
+
+
+
+
+
+
+
+
+
+
+/**
+ * Harlowe Audio Library (HAL), by Chapel, v2.3.0
+ * for Harlowe 2.1.0 and higher
+ * Released under the Unlicense, and dedicated to the public domain.
+**/
+;!function(e){(jQuery.browser=jQuery.browser||{}).mobile=/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i.test(e)||/1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(e.substr(0,4))}(navigator.userAgent||navigator.vendor||window.opera),function(){"use strict";window.Fast={filter:function(e,t){for(var o=e.length,n=[],a=0;a<o;a++)t(e[a],a,e)&&n.push(e[a]);return n},forEach:function(e,t){for(var o=e.length,n=0;n<o;n++)t(e[n],n,e)},map:function(e,t){for(var o=e.length,n=new Array(o),a=0;a<o;a++)n[a]=t(e[a],a,e);return n},find:function(e,t){for(var o=e.length,n=0;n<o;n++)if(t(e[n],n,e))return e[n]},findIndex:function(e,t){for(var o=e.length,n=0;n<o;n++)if(t(e[n],n,e))return n;return-1},some:function(e,t){for(var o=e.length,n=0;n<o;n++)if(t(e[n],n,e))return!0;return!1}}}(),window.Chapel=window.Chapel||{},window.Chapel.options={preload:!0,loadDelay:0,muteOnBlur:!0,startingVol:.5,persistPrefs:!0,globalA:!0,showControls:!0,sidebarStartClosed:!0,volumeDisplay:!1,trackLoadLimit:500,totalLoadLimit:8e3,debug:!1},window.Chapel.debug=function(){Chapel.options.debug&&console.log.apply(null,arguments)},function(){"use strict";var n=$("tw-storydata"),o=/(.+?):(.+)/,t=/[\r\n]+/,a=/^["']/,r=/["']$/;function e(e){return Fast.map(Fast.filter(e.split(t),function(e){return e&&e.trim()&&e.includes(":")}),function(e){return e.trim()})}function i(e){return e.trim().replace(a,"").replace(r,"").trim()}function s(e){var t=e.match(o);return t instanceof Array?{key:i(t[1]),value:i(t[2])}:e}var u,l,c,p=n.find('tw-passagedata[name="hal.tracks"]'),d=null,p=(p.length&&(p=e(p.text()),u=[],l=[],Fast.forEach(p,function(e){var e=s(e);"string"==typeof e&&l.push(e),u.push([e.key,(e=e.value,Fast.map(e.split(","),i))])}),l.length&&console.error("Some track definitions could not be parsed:\n"+l.join("\n")+"\nPlease check these definitions and try again."),d=new Map(u)),n.find('tw-passagedata[name="hal.config"]')),m=null;function f(e){var t=n.attr("format-version");if(e)return t;var e=t.split("."),t=e[0],o=e[1],e=e[2],t=Number(t),o=Number(o);return[t=(t=Number.isNaN(t)?3:t)<1?3:t,o=Number.isNaN(o)?3:o,e=Number.isNaN(e)?0:e]}function h(){var e=f();return!(3<=e[0]&&3<=e[1])}function g(t){return function(){var e=[].slice.call(arguments).slice(1),e=t.apply(null,e);return"string"==typeof e||"boolean"==typeof e||"number"==typeof e?e:""}}p.length&&(p=e(p.text()),c={},Fast.forEach(Fast.map(p,function(e){return s(e)}),function(e){c[e.key]=e.value}),m=c),m&&Fast.forEach(Object.keys(m),function(e){var t=e,o=c[e],e=typeof Chapel.options[e];"boolean"==e?"true"===o?Chapel.options[t]=!0:"false"===o&&(Chapel.options[t]=!1):"number"==e?(o=Number(o),Number.isNaN(o)||(Chapel.options[t]=o)):"string"==e&&o&&(Chapel.options[t]=o)});var y=require("macros");if(window.Chapel=window.Chapel||{},window.Chapel.Macros={add:function(o){o&&"object"==typeof o&&Fast.forEach(Object.keys(o),function(e){var t;t=o[e=e],h()?y.add(e,g(t),y.TypeSignature.zeroOrMore(y.TypeSignature.Any)):y.add(e,"Any",g(t),y.TypeSignature.zeroOrMore(y.TypeSignature.Any))})}},window.Chapel.Get=Object.freeze({version:f(),isHarlowe3OrLater:3<=f()[0],storyTitle:n.attr("name"),IFID:n.attr("ifid"),useOldMacroAPI:h(),fromPassage:d}),Chapel.debug("Harlowe Version -> ",Chapel.Get.version.join(".")),Chapel.debug("Harlowe Major Version -> ",Chapel.Get.version[0]),Chapel.debug("Story Title -> ",Chapel.Get.storyTitle),Chapel.debug("Story IFID -> ",Chapel.Get.IFID),Chapel.Get.version[0]<2)throw new Error("The Harlowe Audio Library is only designed to work with Harlowe 2 and 3; you appear to be using Harlowe 1 or an otherwise invalid story format.","get.js -> initialization",176);Chapel.options.storagekey="%%hal-"+Chapel.Get.IFID+"-{"+Chapel.Get.storyTitle+"}",Chapel.debug("Storage Key -> ",Chapel.options.storagekey)}(),function(){"use strict";var t=Chapel.options,e=function(e,t){if(window.localStorage)try{e=""+e,"string"!=typeof t&&(t=JSON.stringify(t)),window.localStorage.setItem(e,t)}catch(e){console.error(e)}},o=function(e){if(window.localStorage)try{return e=""+e,window.localStorage.getItem(e)}catch(e){console.error(e)}},n=function(e){if(window.localStorage)try{e=""+e,window.localStorage.removeItem(e)}catch(e){console.error(e)}},a={loaded:[],classes:{},master:{volume:t.startingVol,mute:!1},groups:{playing:[],looping:[],custom:{}},mute:function(e){a.master.mute=!!e,$(document).trigger({type:":master-mute",mute:!!e})},isMuted:function(){return!!a.master.mute},volume:function(e){e=Number(e),Number.isNaN(e)||(1<e?e=1:e<0&&(e=0),a.master.volume=e),$(document).trigger({type:":master-volume",volume:e})},getVolume:function(){return a.master.volume},stopAll:function(){a.classes.Track&&Fast.forEach(a.classes.Track.list,function(e){e.stop()})},audioPlaying:function(){return!!a.groups.playing.length},savePrefs:function(){e(t.storagekey,a.master)},loadPrefs:function(){var e=o(t.storagekey);e&&"object"==typeof e&&e.hasOwnProperty("volume")&&"number"==typeof e.volume&&e.hasOwnProperty("mute")&&"boolean"==typeof e.volume&&(delete a.master,a.master=e)},clearPrefs:function(){n(t.storagekey)}},r={track:[":available",":loaded",":play",":stop",":mute",":volume"],master:[":master-mute",":master-volume"]};var i=r.track.concat(r.master);function s(e,t){if(!e||"string"!=typeof e||!e.trim())return null;e=Fast.filter(Fast.map(e.split(" "),function(e){return(e=":"!==(e=e.split(".")[0])[0]?":"+e:e)+".userland"}),function(e){return(t?i:r.track).includes(e)}).join(" ");return e&&e.trim()?e:null}a.data={parseEvent:s,bail:function(e){throw new Error(e,"audio.js -> bail()",140)}},a.on=function(e,t){t&&"function"==typeof t?(e=s(e,!0))&&$(document).on(e,t):console.error("Chapel.Audio.on() -> invalid callback")},a.one=function(e,t){t&&"function"==typeof t?(e=s(e,!0))&&$(document).one(e,t):console.error("Chapel.Audio.one() -> invalid callback")},a.off=function(e){(e=s(e,!0))&&$(document).off(e)},t.persistPrefs&&($(document).on(":master-mute",a.savePrefs),$(document).on(":master-volume",a.savePrefs)),$(document).on(":play",function(e){e.track.addToGroup("playing")}),$(document).on(":stop",function(e){e.track.removeFromGroup("playing")}),t.muteOnBlur&&$(window).on("blur",function(){a.isMuted()||(a.mute(!0),$(window).one("focus",function(){a.mute(!1)}))}),a.parseEvent=s,window.Chapel=window.Chapel||{},window.Chapel.Audio=a}(),function(){"use strict";var a=Chapel.Audio,o=a.data.pareEvent,r=a.data.bail,i=Chapel.options,t=$(document.createElement("div")).attr("id","audio-container").css("display","none").appendTo(document.body),s={aac:"audio/aac",caf:"audio/x-caf","x-caf":"audio/x-caf",mp3:'audio/mpeg; codecs="mp3"',mpeg:'audio/mpeg; codecs="mp3"',m4a:"audio/mp4",mp4:"audio/mp4","x-m4a":"audio/mp4","x-mp4":"audio/mp4",oga:"audio/ogg",ogg:"audio/ogg",opus:'audio/ogg; codecs="opus"',wav:"audio/wav",wave:"audio/wav",weba:"audio/webm",webm:"audio/webm"};function u(e,t,o){this instanceof u||r("Track: called without `new` operator"),e||r("Track: no id specified"),"string"!=typeof e&&r("Track: track id is not a string"),t&&(!Array.isArray(t)||t.length)||r("Track: no sources specified"),o?t=[].slice.call(arguments).slice(1):"string"==typeof t&&(t=[t]);var n=$(document.createElement("audio"));Fast.forEach(t,function(e){$(document.createElement("source")).attr({src:e,type:(e=(e=(e=(e=(e=e).split("."))[e.length-1]).includes("?")?e.split("?")[0]:e).toLowerCase().trim(),Object.keys(s).includes(e)||r('Track: unsupported file type "'+e+'"'),s[e])}).appendTo(n)}),n.attr({"data-track":"id","data-volume":1,"data-mute":!1}).one("canplaythrough.hal",function(){a.loaded.push(e)}),i.preload&&n.attr("preload","auto"),n[0].volume=+a.master.volume,this.id=e,this.$el=n,this.unwrap=n[0],this.sources=t}Object.assign(u,{list:[],is:function(e){return e instanceof u},has:function(t){return Fast.some(u.list,function(e){return e.id===t})},emit:function(e,t){$(document).trigger({type:e,track:t}),t.emit(e)},add:function(e,t,o){var n=new u(e,t=o?[].slice.call(arguments).slice(1):t);return u.list.push(n),n.$el.on("canplay",function(){u.emit(":available",n)}),n.$el.on("canplaythrough",function(){u.emit(":loaded",n)}),n.attach(),n},renew:function(){Fast.forEach(u.list,function(e){e.mute(e.isMuted()),e.volume(e.getVolume())})},getIdx:function(t){return Fast.findIndex(u.list,function(e){return e.id===t})},get:function(t){var e=Fast.find(u.list,function(e){return e.id===t});if(e)return e;throw new ReferenceError('There is no track with the id "'+t+'". Please check your spelling and capitalization.',"track.js -> Track.get()",155)},removeFromDOM:function(e){(e="string"==typeof e?u.get(e):e)&&u.is(e)?e.unattach():t.remove()},_runOnMultiple:function(e,t,o){e instanceof Array&&u.prototype.hasOwnProperty(t)&&Fast.forEach(e,function(e){(e=u.is(e)?e:u.get(e)||null)&&e[t].apply(e,o&&o instanceof Array?o:[])})}}),Object.assign(u.prototype,{constructor:u,emit:function(e){this.$el.trigger({type:e,track:this})},clone:function(){return new u(this.id,this.sources)},isAttached:function(){return $.contains(t[0],this.unwrap)},attach:function(){return this.isAttached()||this.$el.appendTo(t),this},unattach:function(){return this.isAttached()&&this.$el.remove(),this},isPlaying:function(){return!this.unwrap.paused},play:function(){var e=this;return this.unwrap.play(),u.emit(":play",this),this.$el.on("ended",function(){e.unwrap.loop||(e.unwrap.currentTime=0,u.emit(":stop",e))}),this},playWhenPossible:function(){var t=this;return this.unwrap.play().then(function(){u.emit(":play",t),t.$el.on("ended",function(){t.unwrap.loop||(t.unwrap.currentTime=0,u.emit(":stop",t))})},function(e){$(document).one("click mousedown keydown touchstart",function(){t.play()})}).catch(function(e){console.error(e)}),this},forcePlay:function(){var e=this,t=$(document.createElement("a")).css("display","none").appendTo(document.body).on("click",function(){e.play()});setTimeout(function(){t.trigger("click")},safeAudioStart)},pause:function(){return this.unwrap.pause(),u.emit(":pause",this),this},stop:function(){return this.unwrap.pause(),this.unwrap.currentTime=0,u.emit(":stop",this),this},mute:function(e){return this.$el.attr("data-mute",e=!!e),a.master.mute?this.unwrap.muted=!0:this.unwrap.muted=e,u.emit(":mute",this),this},isMuted:function(){var e=this.$el.attr("data-mute");return"boolean"==typeof e?e:"false"!==e},toggleMute:function(){return this.mute(!this.isMuted()),this},volume:function(e){return e=Number(e),Number.isNaN(e)||(1<e?e=1:e<0&&(e=0),this.$el.attr("data-volume",e),this.unwrap.volume=e*a.master.volume),u.emit(":volume",this),this},getVolume:function(){return Number(this.$el.attr("data-volume"))},addToGroup:function(e,t){var o=this,t=(t?a.groups.custom:a.groups)[e];return Fast.some(t,function(e){return o.id===e.id})||t.push(this),this},removeFromGroup:function(e,t){var o=this,t=(t?a.groups.custom:a.groups)[e],e=Fast.findIndex(t,function(e){return e.id&&e.id===o.id});return t.splice(e,1),this},loop:function(e){return this.unwrap.loop=!!e,this.unwrap.loop?this.addToGroup("looping"):this.removeFromGroup("looping"),this},isLooping:function(){return!!this.unwrap.loop},toggleLoop:function(){return this.loop(!this.isLooping()),this},seek:function(e){return e<0?e=this.unwrap.duration-e:e>this.unwrap.duration&&(e=this.unwrap.duration),this.unwrap.currentTime=e,this},fadeIn:function(e){var t=this,o=(e=e||1,this.getVolume());return this.volume(0),this.play(),this.$el.animate({volume:o*a.master.volume},1e3*e,function(){t.volume(o),u.emit(":volume",t),u.emit(":fade",t)}),this},fadeOut:function(e){e=e||1;var t=this,o=this.getVolume();return this.$el.animate({volume:0},1e3*e,function(){t.stop(),t.volume(o),u.emit(":volume",t),u.emit(":fade",t)}),this},fadeTo:function(e,t){var o=this;if(e=e||1,t=Number(t),!Number.isNaN(t))return 1<t?t=1:t<0&&(t=0),this.$el.animate({volume:t*a.master.volume},1e3*e,function(){o.volume(t),u.emit(":volume",o),u.emit(":fade",o)}),this;alert("ivalid volume level")},delay:function(e,t){var o=this;"function"==typeof t&&(e=Number(e),(Number.isNaN(e)||e<0)&&(e=0),setTimeout(function(){t.call(o,o,e)},e))},on:function(e,t){if(!t||"function"!=typeof t)return console.error("<track>.on() -> invalid callback"),this;(e=o(e))&&this.$el.on(e,t)},one:function(e,t){if(!t||"function"!=typeof t)return console.error("<track>.one() -> invalid callback"),this;(e=o(e))&&this.$el.one(e,t)},off:function(e){(e=o(e))&&this.$el.off(e)}}),a.classes.Track=u,a.newTrack=function(){try{return u.add.apply(null,arguments)}catch(e){console.error(e.message),alert("Error in A.newTrack() -> see the console for more information.")}},a.track=function(e){try{return u.get(e)}catch(e){console.error(e.message),alert("Error in A.track() -> see the console for more information.")}},$(document).on(":master-mute",u.renew),$(document).on(":master-volume",u.renew)}(),function(){"use strict";var n=Chapel.Audio,a=n.classes.Track,o=(n.data._extend,/(play)?list:(.+)/i);n.createGroup=function(e,t,o){o=o?[].slice.call(arguments).slice(1):t;t=e,(e=o)&&Array.isArray(e)||(e=[]),n.groups.custom[t]=Fast.map(e,function(e){return a.get(e)})},n.group=function(e){if(!(this instanceof n.group))return new n.group(e);if(Object.keys(n.groups.custom).includes(e))this.members=n.groups.custom[e];else{if(!(n.groups[e]&&n.groups[e]instanceof Array))throw new ReferenceError('There is no group with the id "'+id+'". Please check your spelling and capitalization.',"group.js -> A.group()",29);this.members=n.groups[e]}var t;o.test(e)&&(t=e.match(o)[2])&&t.trim()&&(this.members=n.playlist(t).tracks),Array.isArray(this.members)||(this.members=[],console.error('Could not find members for track group "'+e+'"!'))},Object.assign(n.group,{is:function(e){return this instanceof n.group},_runOnAll:function(e,t,o,n){null!=n?o=[].slice.call(arguments).slice(2):o instanceof Array||(o=[o]);n=[e.members,t,o];a._runOnMultiple.apply(null,n)}}),Object.assign(n.group.prototype,{constructor:n.group,_run:function(){n.group._runOnAll.apply(null,[this].concat([].slice.call(arguments)))},play:function(){return this._run("play"),this},pause:function(){return this._run("pause"),this},stop:function(){return this._run("stop"),this},mute:function(e){return this._run("mute",e),this},volume:function(e){return this._run("volume",e),this},loop:function(e){return this._run("loop",e),this}})}(),function(){"use strict";var e=Chapel.Audio,a=e.classes.Track;e.data._extend;function n(e,t){if(!(this instanceof n))return new n(e,t);this.id=e,this.tracks=t.map(function(e){return a.get(e)}),this.looping=!1,this.current="",this.playing=!1}Object.assign(n,{list:{},is:function(e){return e instanceof n},add:function(e,t,o){return o&&(t=[].slice.call(arguments).slice(1)),n.list[e]=new n(e,t),n.list[e]},_runOnAll:function(e,t,o,n){null!=n?o=[].slice.call(arguments).slice(2):o instanceof Array||(o=[o]);n=[e.tracks,t,o];a._runOnMultiple.apply(null,n)}}),Object.assign(n.prototype,{constructor:n,clone:function(){return new n(this.id,this.tracks.map(function(e){return e.id}))},_run:function(){n._runOnAll.apply(null,[this].concat([].slice.call(arguments)))},volume:function(e){return this._run("volume",e),this},mute:function(e){return this._run("mute",e),this},shuffle:function(){for(var e,t,o=this.tracks,n=o.length-1;0<n;n--)e=Math.floor(Math.random()*(n+1)),t=o[n],o[n]=o[e],o[e]=t;return this.tracks=o,this},random:function(){return this.tracks[Math.floor(Math.random()*this.tracks.length)]},isPlaying:function(){return this.playing},nowPlaying:function(){return a.get(this.current)},play:function(e){var t=this;if((e=e||(t.current?Fast.findIndex(t.tracks,function(e){return e.id===t.current}):0))>=t.tracks.length&&t.looping)e=0;else if(e>=t.tracks.length)return t.current="",void(t.playing=!1);var o=t.tracks[e],n=o.isLooping();return o.loop(!1),o.play(),t.playing=!0,setTimeout(function(){o.isPlaying()||(t.playing=!1)},20),t.current=o.id,o.$el.one("ended.playlist",function(){e++,o.loop(n),t.play(e)}),t},loop:function(e){return this.looping=!!e,this},isLooping:function(){return this.looping},stop:function(){var e;return this.current&&this.isPlaying()?(e=this.nowPlaying())&&(e.stop(),e.$el.off(".playlist")):this._run("stop"),this.current="",this.playing=!1,this},pause:function(){var e;return this.current&&this.isPlaying()&&((e=this.nowPlaying())&&e.pause()),this.playing=!1,this}}),e.classes.Playlist=n,e.createPlaylist=function(){try{n.add.apply(null,arguments)}catch(e){console.error(e.message),alert("Error in A.createPlaylist() -> see the console for more information.")}},e.playlist=function(e){try{var t=n.list[e]||null;if(t)return t;throw new ReferenceError('There is no playlist with the id "'+e+'". Please check your spelling and capitalization.',"list.js -> A.playlist()",171)}catch(e){console.error(e.message),alert("Error in A.createPlaylist() -> see the console for more information.")}}}(),function(){"use strict";var t=Chapel.Audio,o=t.classes.Track,n=t.classes.Playlist;function a(t,o){if("object"!=typeof o)throw new TypeError("Invalid extension.","extensions.js -> _extend()",8);Fast.forEach(Object.keys(o),function(e){if(void 0!==t[e])throw new Error('Invalid extension: cannot clobber existing property "'+e+'".',"extensions.js -> _extend()",8);t[e]=o[e]})}t.extend=function(e){a(Audio,e)},o.extend=function(e){a(o,e)},o.extendPrototype=function(e){a(o.prototype,e)},t.extendTrack=o.extend,t.extendTrackProto=o.extendPrototype,t.group.extend=function(e){a(t.group,e)},t.group.extendPrototype=function(e){a(t.group.prototype,e)},t.extendGroup=t.group.extend,t.extendGroupProto=t.group.extendPrototype,n.extend=function(e){a(n,e)},n.extendPrototype=function(e){a(n.prototype,e)},t.extendPlaylist=n.extend,t.extendPlaylistProto=n.extendPrototype}(),function(){"use strict";var e,t,o,n,a,r,i,s=Chapel.options;s.showControls&&(e=$(document.createElement("div")).attr("id","story-menu").css("display","none"),t=$(document.createElement("span")).attr("id","vol-title").append("Volume"),s.volumeDisplay||t.css("display","none"),o=$(document.createElement("input")).attr({id:"audio-volume",type:"range",min:1,max:99,step:1,title:"Volume"}).addClass("hal"),(a=Math.trunc(100*window.Chapel.Audio.master.volume))<0?a=0:100<a&&(a=100),o.attr("value",a),n=function(e){void 0===e&&(e=o.val()),t.empty().append("Volume "+e)},o.on("input",function(){window.Chapel.Audio.volume($(this).val()/100),n($(this).val())}),a=$(document.createElement("tw-link")).attr({id:"audio-mute",title:"Mute"}).append("Mute <span></span>").on("click",function(e){e.preventDefault(),$(this).toggleClass("muted"),Chapel.Audio.mute(!Chapel.Audio.isMuted())}),Chapel.Audio.isMuted()&&a.addClass("muted"),r=$(document.createElement("tw-link")).attr("id","audio-panel-toggle").on("click",function(e){e.preventDefault(),i.toggleClass("closed")}),i=$(document.createElement("div")).attr("id","audio-controls").append(e,t,o,a,r).appendTo(document.body),s.sidebarStartClosed&&i.addClass("closed"),window.Chapel=window.Chapel||{},window.Chapel.Audio=window.Chapel.Audio||{},window.Chapel.Audio.controls={$panel:i,$volume:o,$mute:a,$user:e,close:function(){i.addClass("closed")},open:function(){i.removeClass("closed")},toggle:function(){i.toggleClass("closed")},hide:function(){i.css("display","none")},show:function(){i.css("display","block")},updateVolume:n})}(),function(){"use strict";var s=Chapel.options,t=State,e=$(document.createElement("div")).attr("id","audio-overlay").css("display","none").appendTo(document.body);function o(){e.css("display","block").append('<div class="lds-ring"><div></div><div></div><div></div><div></div></div>')}function u(){e.fadeOut(function(){e.empty()})}window.Chapel=window.Chapel||{},window.Chapel.Audio=window.Chapel.Audio||{},window.Chapel.Audio.loadScreen={show:o,dismiss:u,kill:function(){$("#audio-overlay").remove()}},window.Chapel.Audio.$overlay=e,window.Chapel.Audio.preload=function(){var a,e,r,i;Chapel.debug("This is a mobile browser -> ",$.browser.mobile),t.pastLength||t.futureLength||$.browser.mobile||($(document).ready(function(){o()}),a=100+s.loadDelay,e=Chapel.Audio.classes.Track.list,r=Chapel.Audio.loaded,e.length?(i=Fast.map(e,function(e){return e.id}),0<s.totalLoadLimit&&setTimeout(function(){u()},s.totalLoadLimit),function e(){var t,o,n;i.length?(t=i.shift(),r.includes(t)?e():(o=Chapel.Audio.classes.Track.get(t)).unwrap.readyState<2?(n=!1,o.$el.one("canplaythrough.hal",function(){e(),n=!0}),setTimeout(function(){n||(o.$el.off("canplaythrough.hal"),e())},s.trackLoadLimit)):(r.includes(t)||r.push(t),e())):setTimeout(u,a)}()):setTimeout(u,a))}}(),function(){"use strict";var e,t,o=Chapel.options.storagekey+"_hal_restart_",n=(Chapel.debug("HAL Session Key -> ",o),window.sessionStorage?(Chapel.debug("Session Storage Available"),e=function(e,t){window.sessionStorage.setItem(o+e,t)},t=function(e){return window.sessionStorage.getItem(o+e)}):(Chapel.debug("Session Storage Unavailable"),e=function(){},t=function(){},console.warn("Session storage is unavailable...")),{save:e,load:t});window.Chapel.Audio.state={_store:n,saveTracks:function(){var e;try{e=Fast.map(Chapel.Audio.classes.Track.list,function(e){return{id:e.id,sources:e.sources}}),Chapel.debug("Session Saved (Tracks) -> ",e),e=JSON.stringify(e),n.save("tracks",e)}catch(e){console.error(e.message)}},loadTracks:function(){var e;try{e=(e=n.load("tracks"))&&JSON.parse(e),Array.isArray(e)&&e.length&&(Chapel.debug("Session Loaded (Tracks) -> ",e),Fast.forEach(e,function(e){e.id&&e.sources&&!Chapel.Audio.classes.Track.has(e.id)?Chapel.Audio.newTrack.apply(null,[e.id].concat(e.sources)):Chapel.debug("Track reloading skipped.")}))}catch(e){console.error(e.message)}},savePlaylists:function(){try{var o=Chapel.Audio.classes.Playlist.list,e=Fast.map(Object.keys(o),function(e){var t={};return t.tracks=Fast.map(o[e].tracks,function(e){return e.id}),t.id=o[e].id,t});Chapel.debug("Session Saved (Playlists) -> ",e),e=JSON.stringify(e),n.save("playlists",e)}catch(e){console.error(e.message)}},loadPlaylists:function(){var e;try{(e=(e=n.load("playlists"))&&JSON.parse(e))&&Array.isArray(e)&&e.length&&(Chapel.debug("Session Loaded (Playlists) -> ",e),Fast.forEach(e,function(e){e.id&&e.tracks&&Chapel.Audio.createPlaylist(e.id,e.tracks)}))}catch(e){console.error(e.message)}},saveGroups:function(){var t;try{t={},Fast.forEach(Object.keys(Chapel.Audio.groups.custom),function(e){t[e]=Fast.map(Chapel.Audio.groups.custom[e],function(e){return"string"==typeof e?e:e.id})}),Chapel.debug("Session Saved (Groups) -> ",t),t=JSON.stringify(t),n.save("groups",t)}catch(e){console.error(e.message)}},loadGroups:function(){var t;try{(t=(t=n.load("groups"))&&JSON.parse(t))&&"object"==typeof t&&(Chapel.debug("Session Loaded (Groups) -> ",t),Fast.forEach(Object.keys(t),function(e){Fast.map(t[e],function(e){return Chapel.Audio.classes.Track.get(e)})}),Chapel.Audio.groups.custom=t)}catch(e){console.error(e.message)}}}}(),function(){"use strict";var e=Chapel.options;e.globalA&&void 0===window.A&&(Chapel.debug("Created global A interface."),window.A=window.Chapel.Audio),Chapel.Get.fromPassage&&(Chapel.debug("Loading tracks from track def special passage -> ",Chapel.Get.fromPassage),Chapel.Get.fromPassage.forEach(function(e,t){Chapel.Audio.newTrack.apply(null,[t].concat(e))})),$(document).on("unload",function(){Chapel.debug("User Prefs Saved"),window.Chapel.Audio.savePrefs()}),Chapel.Audio.classes.Track.renew(),Chapel.Audio.controls&&Chapel.Audio.controls.updateVolume(),Chapel.Get.isHarlowe3OrLater&&($(window).on("unload",function(){Chapel.debug("HAL State Saved"),Chapel.Audio.state.saveTracks(),Chapel.Audio.state.savePlaylists(),Chapel.Audio.state.saveGroups()}),Chapel.debug("HAL State Loaded"),Chapel.Audio.state.loadTracks(),Chapel.Audio.state.loadPlaylists(),Chapel.Audio.state.loadGroups()),e.persistPrefs&&(Chapel.debug("User Prefs Loaded"),Chapel.Audio.loadPrefs())}(),function(){"use strict";var i,s,e,u,t;Chapel.options.showControls&&(i=Engine,s=Chapel.Audio.controls.$user,e=function(){return"none"!==s.css("display")},u=function(){return e()||s.css("display","block"),s},t=function(){return e()&&s.css("display","none"),s},Chapel.Audio.menu={hide:t,show:u,isShown:e,links:{add:function(e,t,o){var n,a;if(!e||"string"!=typeof e)return r="undefined",alert(r),void console.error(r);o||"function"!=typeof t?(t&&"string"==typeof t&&(n=t),o&&"function"==typeof o&&(a=o)):(a=t,n=null);var r=$(document.createElement("tw-link")).append(e).attr({tabindex:"0",name:e.toLowerCase().trim()}).on("click",function(){n&&i.goToPassage(n),a&&a()}).addClass("story-menu").appendTo(s);return u(),r},clear:function(){return s.empty(),t()},hide:function(e){e=e.toLowerCase().trim(),$('tw-link.story-menu[name="'+e+'"]').addClass("hide")},show:function(e){e=e.toLowerCase().trim(),$('tw-link.story-menu[name="'+e+'"]').removeClass("hide")},toggle:function(e){e=e.toLowerCase().trim(),$('tw-link.story-menu[name="'+e+'"]').toggleClass("hide")},remove:function(e){e=e.toLowerCase().trim(),$('tw-link.story-menu[name="'+e+'"]').remove()}}})}(),function(){"use strict";var n=Chapel.Audio;function o(e){return e&&"function"==typeof e}function a(e,t){if(!e||"string"!=typeof e)return null;switch(e=e.toLowerCase().trim()){case"isplaying":e="isPlaying";break;case"playwhenpossible":e="playWhenPossible";break;case"ismuted":e="isAMuted";break;case"togglemute":e="toggleMute";break;case"getvolume":e="getVolume";break;case"islooping":e="isLooping";break;case"toggleloop":e="toggleLoop";break;case"fadein":e="fadeIn";break;case"fadeout":e="fadeOut";break;case"fadeto":e="fadeTo";break;case"stopall":e="stopAll"}if("isPlaying"===e&&"master"===t&&(e="audioPlaying"),"group"===t){if(o(n.group.prototype[e]))return e}else if("master"===t){if(o(n[e]))return e}else if(o(n.classes[t].prototype[e]))return e;throw new ReferenceError('Cannot run the command: "'+e+'" on the API "'+t+'". The command may be invalid, or this may be a bug in HAL.',"macros.js -> getCommand()",10)}window.Chapel.Macros.add({newtrack:function(){var e=[].slice.call(arguments);try{return n.newTrack.apply(null,e)}catch(e){alert("Error in the (newtrack:) macro: "+e.message)}},newplaylist:function(e,t){t=[].slice.call(arguments).slice(1);try{return n.createPlaylist(e,t)}catch(e){alert("Error in the (newplaylist:) macro: "+e.message)}},newgroup:function(e,t){t=[].slice.call(arguments).slice(1);try{return n.createGroup(e,t)}catch(e){alert("Error in the (newgroup:) macro: "+e.message)}},masteraudio:function(e){try{return e=a(e,"master"),n[e].apply(null,[].slice.call(arguments).slice(1))}catch(e){alert("Error in the (masteraudio:) macro: "+e.message)}},track:function(e,t){try{var o=n.track(e);return o[t=a(t,"Track")].apply(o,[].slice.call(arguments).slice(2))}catch(e){alert("Error in the (track:) macro: "+e.message)}},playlist:function(e,t){try{var o=n.playlist(e);return o[t=a(t,"Playlist")].apply(o,[].slice.call(arguments).slice(2))}catch(e){alert("Error in the (playlist:) macro: "+e.message)}},group:function(e,t){try{var o=n.group(e);return o[t=a(t,"group")].apply(o,[].slice.call(arguments).slice(2))}catch(e){alert("Error in the (group:) macro: "+e.message)}}})}();
+/** End of HAL code */
+
+:: StoryStylesheet [stylesheet]
+/* === CONFIGURAÇÕES GERAIS === */
+html {
+  background-color: #0a0a0a;
+  background-image: 
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 255, 100, 0.03) 2px,
+      rgba(0, 255, 100, 0.03) 4px
+    );
+  animation: flicker 0.15s infinite;
+}
+
+body {
+  background-color: transparent;
+}
+
+tw-story {
+  background-color: #000000;
+  color: #00ff41;
+  font-family: 'Courier New', monospace;
+  font-size: 16px;
+  line-height: 1.6;
+  padding: 40px;
+  max-width: 800px;
+  margin: 0 auto;
+  border: 2px solid #00ff41;
+  box-shadow: 
+    0 0 10px rgba(0, 255, 65, 0.5),
+    inset 0 0 100px rgba(0, 255, 65, 0.05);
+  text-shadow: 0 0 5px rgba(0, 255, 65, 0.7);
+}
+
+
+/* === REPOSICIONAR BOTÃO UNDO === */
+tw-sidebar {
+  left: 630px !important;
+  top: -60px !important;
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 10px !important;
+}
+
+
+/* === ANIMAÇÃO DE FLICKER === */
+@keyframes flicker {
+  0% { opacity: 0.97; }
+  50% { opacity: 1; }
+  100% { opacity: 0.97; }
+}
+
+/* === LINKS === */
+tw-link {
+  color: #00ff41;
+  text-decoration: none;
+  border-bottom: 1px solid #00ff41;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+tw-link:hover {
+  color: #ffffff;
+  border-bottom-color: #ffffff;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+  background-color: rgba(0, 255, 65, 0.1);
+  padding: 2px 4px;
+}
+
+/* === INPUT BOXES === */
+input, select {
+  background-color: #001a00;
+  color: #00ff41;
+  border: 1px solid #00ff41;
+  padding: 8px;
+  font-family: 'Courier New', monospace;
+  font-size: 16px;
+  box-shadow: inset 0 0 10px rgba(0, 255, 65, 0.3);
+  outline: none;
+  
+}
+
+select option{
+  background-color: #000000;
+  color: #00ff41;
+}
+input:focus, select:focus {
+  outline: none !important; /* Força remover o outline */
+  border: 1px solid #00ff41 !important; /* Mantém só a borda verde */
+  box-shadow: 
+    inset 0 0 10px rgba(0, 255, 65, 0.5),
+    0 0 10px rgba(0, 255, 65, 0.8);
+}
+input, select, textarea {
+  outline: none !important;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+
+/* === TEXTO GLITCHADO === */
+.glitch {
+  animation: glitch 1s infinite;
+}
+
+@keyframes glitch {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
+}
+
+/* === SEPARADORES === */
+hr {
+  border: none;
+  border-top: 1px solid #00ff41;
+  margin: 20px 0;
+  box-shadow: 0 0 5px rgba(0, 255, 65, 0.5);
+}
+
+/* === CURSOR PISCANDO === */
+tw-story::after {
+  content: '█';
+  animation: blink 1s infinite;
+  margin-left: 5px;
+}
+
+@keyframes blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+/* === EFEITO DE SCANLINE === */
+tw-story::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.15),
+    rgba(0, 0, 0, 0.15) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  z-index: 9999;
+}
+
+/* === SCROLL BAR === */
+\::-webkit-scrollbar {
+  width: 12px;
+}
+
+\::-webkit-scrollbar-track {
+  background: #000000;
+  border: 1px solid #00ff41;
+}
+
+\::-webkit-scrollbar-thumb {
+  background: #00ff41;
+  box-shadow: 0 0 10px rgba(0, 255, 65, 0.8);
+}
+
+\::-webkit-scrollbar-thumb:hover {
+  background: #00cc33;
+}
+
+.shake {
+  animation: shake 0.5s infinite;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-2px); }
+  75% { transform: translateX(2px); }
+}
+
+.pulse {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+
+
+
+
+/* === EFEITO SHUDDER (tremor) === */
+@-webkit-keyframes shudder {
+	50% {
+		-webkit-transform: translateX(0.2em);
+		transform: translateX(0.2em)
+	}
+}
+@keyframes shudder {
+	50% {
+		-webkit-transform: translateX(0.2em);
+		transform: translateX(0.2em)
+	}
+}
+.shudder {
+	-webkit-animation: shudder linear 0.1s 0s infinite;
+	animation: shudder linear 0.1s 0s infinite;
+	display: inline-block;
+}
+
+/* === EFEITO BLINK (piscar) === */
+@-webkit-keyframes blinker {
+    50% { visibility: hidden; }
+}
+@keyframes blinker {
+    50% { visibility: hidden; }
+}
+.blink {
+    -webkit-animation: blinker 1s step-end infinite;
+    animation: blinker 1s step-end infinite;
+}
+
+/* === EFEITO BLINK LENTO === */
+@keyframes blinker-slow {
+    50% { visibility: hidden; }
+}
+.blink-slow {
+    animation: blinker-slow 3s step-end infinite;
+}
+
+/* === EFEITO BLINK SUAVE (fade ao invés de corte) === */
+@keyframes blinker-fade {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+.blink-fade {
+    animation: blinker-fade 2s ease-in-out infinite;
+}
+
+/* === EFEITO BLINK MUITO LENTO === */
+@keyframes blinker-veryslow {
+    50% { visibility: hidden; }
+}
+.blink-veryslow {
+    animation: blinker-veryslow 5s step-end infinite;
+}
+
+/* === EFEITO BLINK IRREGULAR (mais realista) === */
+@keyframes blinker-irregular {
+    0%, 30% { visibility: visible; }
+    35%, 40% { visibility: hidden; }
+    45%, 70% { visibility: visible; }
+    75%, 78% { visibility: hidden; }
+    82%, 100% { visibility: visible; }
+}
+.blink-irregular {
+    animation: blinker-irregular 4s infinite;
+}
+
+/* === EFEITO BLUR (embaçado) === */
+.blur {
+    filter: blur(1px);
+    text-shadow: 0 0 5px rgba(0, 255, 65, 0.8);
+}
+
+/* === EFEITO RUMBLE (tremor forte) === */
+@keyframes rumble {
+  0%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(-3px, 3px); }
+  50% { transform: translate(3px, -3px); }
+  75% { transform: translate(-3px, -3px); }
+}
+.rumble {
+  animation: rumble 0.2s infinite;
+  display: inline-block;
+}
+
+/* === SCANLINE INTENSA === */
+.scanline-intense::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.4),
+    rgba(0, 0, 0, 0.4) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  z-index: 9999;
+}
+
+
+
+/* === BOTÃO DE TOGGLE FLICKER === */
+#flicker-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: rgba(0, 255, 65, 0.2);
+  border: 1px solid #00ff41;
+  color: #00ff41;
+  padding: 10px 15px;
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  cursor: pointer;
+  z-index: 10000;
+  transition: all 0.3s;
+}
+
+#flicker-toggle:hover {
+  background-color: rgba(0, 255, 65, 0.4);
+  box-shadow: 0 0 10px rgba(0, 255, 65, 0.8);
+}
+
+/* === DESABILITA FLICKER === */
+.no-flicker {
+  animation: none !important;
+}
+
+
+
+/**
+ * Harlowe Audio Library (HAL), by Chapel, v2.3.0
+ * for Harlowe 2.1.0 and higher
+ * Released under the Unlicense, and dedicated to the public domain.
+**/
+#audio-overlay{position:fixed;top:0;right:0;left:0;bottom:0;z-index:100000;background:#111}.lds-ring{display:block;position:relative;top:20%;margin:auto;width:20em;height:20em}.lds-ring div{box-sizing:border-box;display:block;position:absolute;width:18em;height:18em;margin:6px;border:6px solid #fff;border-radius:50%;-webkit-animation:lds-ring 1.2s cubic-bezier(.5,0,.5,1) infinite;animation:lds-ring 1.2s cubic-bezier(.5,0,.5,1) infinite;border-color:#fff transparent transparent transparent}.lds-ring div:nth-child(1){-webkit-animation-delay:-.45s;animation-delay:-.45s}.lds-ring div:nth-child(2){-webkit-animation-delay:-.3s;animation-delay:-.3s}.lds-ring div:nth-child(3){-webkit-animation-delay:-.15s;animation-delay:-.15s}@-webkit-keyframes lds-ring{0%{-webkit-transform:rotate(0);transform:rotate(0)}100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}@keyframes lds-ring{0%{-webkit-transform:rotate(0);transform:rotate(0)}100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}input#audio-volume{width:100%;margin:2em 0}span#vol-title{position:relative;bottom:-1em;font-size:1rem;float:left}tw-link#audio-mute{display:inline-block;padding:.3em;width:90%;text-decoration:none;color:#111;background:#eee;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;border:1px solid #000}tw-link#audio-mute:hover{opacity:.8}tw-link#audio-mute:active{opacity:.6}tw-link#audio-mute span{display:inline-block;width:1em;position:relative;height:1em;top:.2em;background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAQAAABLCVATAAABF0lEQVR4Ae2VJVREYRSEB3ftuFUaLhF6I22iF7TgLr1XvAc849CwiBac9Xtm3e97cefp/Pec7+mdH0mZrGtMoBomyAEHfjGHXKg07gNxeUS3BuMAqGZswE7YcOIYgqgG7BFlSQgTAgKysC2jNjQmghFQCOpMxq+QmQgmFATU4kcq/YlgfKB1lALUqFSukRIbEwpy4BTZPM/Bu9TaQ362KAsl56sAtSR+Sgv6RCFdr/gjBYiuj65c3J0eNEmXz95TgybocvmoJj3avf5l59L1iD/WglZCP7/uh8zgeQ6epdahaZENFIPCCFvEYNPW4JdNazBGzhkj6caCbSc02DRRu0+8RR/+rb7wx6D505HxCVKvG0zpp+yknHe8MBDkT/s8AAAAAElFTkSuQmCC);background-size:contain}tw-link#audio-mute.muted span{right:4px;background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAASElEQVR4Ae3WsQ0AMAjAsJ7ez9MTGEmlRGL3BJzPq6prw2DDYMNgw2DDYMOwh1kAMUygQIEC2RejANVxnVE9aDOqJ39GVZWqB5Z3r1ndBX5oAAAAAElFTkSuQmCC)}div#audio-volume{float:left}div#audio-controls{font:100% Georgia,serif;font-size:1.5em;position:fixed;width:8em;height:100%;padding:1em 2em;z-index:10000;top:0;left:0;bottom:0;background:#333;color:#eee;transition:left .3s;text-align:center}div#audio-controls.closed{left:-10.5em}div#audio-controls tw-link#audio-panel-toggle{display:inline-block;width:1.5em;position:absolute;height:1.5em;top:0;right:0;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;text-decoration:none;background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAQAAABLCVATAAAAYklEQVR4Ae3MsQFAMAAEQMDEagCgN4EuVTrbPcACeUBugDNeSdMQomI0PmYdTEYD9DA5jcVoBKuxGY1kNQ6jGRSaGaIj8gw1aI/KYVUSNqsSzMpiVT2zMjlVN0fqVW5o2luMGHqkQmD9cPYAAAAASUVORK5CYII=);background-size:contain}div#audio-controls.closed tw-link#audio-panel-toggle{background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAQAAABLCVATAAAAZElEQVR4Ae3TpwGAMBQAUfrEeHB0cDhcXBSO7ehlgBw9N8BL/YZO95r6uA/UEbOv+ylfHRJ9z1BWLynKJqmWohyS6ijKOygKCpmjZYqXTTA2xUiCsShGAMw8/Q3ArFgFMHek0w3WCaR74eO2YQAAAABJRU5ErkJggg==)}@media screen and (max-width:800px){div#audio-controls.closed{left:-12em}div#audio-controls.closed tw-link#audio-panel-toggle{right:-1.5em}}div#story-menu{margin:1em 0}tw-link.story-menu{width:100%;display:block;font-weight:400;background:#ccc;font-size:.9em;padding:.1em 0;color:#111;border:1px solid #333}tw-link.story-menu.hide{display:none}tw-link.story-menu:hover{opacity:.8}tw-link.story-menu:active{opacity:.6}input[type=range].hal{-webkit-appearance:none;width:100%;margin:2.25px 0}input[type=range].hal:focus{outline:0}input[type=range].hal::-webkit-slider-runnable-track{width:100%;height:15.5px;cursor:pointer;box-shadow:.4px .4px 1px #000,0 0 .4px #0d0d0d;background:#111;border-radius:0;border:0 solid #010101}input[type=range].hal::-webkit-slider-thumb{box-shadow:0 0 2.2px rgba(17,17,17,.1),0 0 0 rgba(30,30,30,.1);border:0 solid #fff;height:20px;width:11px;border-radius:0;background:rgba(255,255,255,.93);cursor:pointer;-webkit-appearance:none;margin-top:-2.25px}input[type=range].hal:focus::-webkit-slider-runnable-track{background:#444}input[type=range].hal::-moz-range-track{width:100%;height:15.5px;cursor:pointer;box-shadow:.4px .4px 1px #000,0 0 .4px #0d0d0d;background:#111;border-radius:0;border:0 solid #010101}input[type=range].hal::-moz-range-thumb{box-shadow:0 0 2.2px rgba(17,17,17,.1),0 0 0 rgba(30,30,30,.1);border:0 solid #fff;height:20px;width:11px;border-radius:0;background:rgba(255,255,255,.93);cursor:pointer}input[type=range].hal::-ms-track{width:100%;height:15.5px;cursor:pointer;background:0 0;border-color:transparent;color:transparent}input[type=range].hal::-ms-fill-lower{background:#000;border:0 solid #010101;border-radius:0;box-shadow:.4px .4px 1px #000,0 0 .4px #0d0d0d}input[type=range].hal::-ms-fill-upper{background:#111;border:0 solid #010101;border-radius:0;box-shadow:.4px .4px 1px #000,0 0 .4px #0d0d0d}input[type=range].hal::-ms-thumb{box-shadow:0 0 2.2px rgba(17,17,17,.1),0 0 0 rgba(30,30,30,.1);border:0 solid #fff;height:20px;width:11px;border-radius:0;background:rgba(255,255,255,.93);cursor:pointer;height:15.5px}input[type=range].hal:focus::-ms-fill-lower{background:#111}input[type=range].hal:focus::-ms-fill-upper{background:#444}
+/** End of HAL code */
