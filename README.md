@@ -265,7 +265,7 @@ Found a bug? Have suggestions? Feel free to:
 - **Developer:** [https://linktr.ee/henriquekarez]
 
 ---
-**⭐ If you enjoyed this project, consider starring the repo!**
+**If you enjoyed this project, consider starring the repo!**
 
 
-Made with ♥ in Twine | Play responsibly | Take care of your mental health
+Made in Twine | Play responsibly | Take care of your mental health
